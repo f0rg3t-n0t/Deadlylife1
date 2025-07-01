@@ -911,12 +911,9 @@
     function showUserInfo() {
       const userBox = document.getElementById('user-display');
       document.getElementById('user-class-line').innerHTML = `User ID: ${currentUser.id}`;
-      document.getElementById('coin-line').innerText = `Coin: ${currentUser.coin || 0}`;
       userBox.classList.remove('hidden');
     }
-    function updateCoinDisplay() {
-      document.getElementById('coin-line').innerText = `Coin: ${currentUser.coin || 0}`;
-    }
+
 //★★★★★출력된 텍스트 아웃풋 창 넘어갈 때 지우기 (goTo 연동용)★★★★★
     function clearOutputs() {
       outputIds.forEach(id => {
@@ -1084,7 +1081,6 @@ function goBack() {
     // 텍스트 강제 갱신 (혹시라도 브라우저 캐시가 날려버린 경우)
     if (currentUser) {
       const idLine = document.getElementById('user-class-line');
-      const coinLine = document.getElementById('coin-line');
       if (idLine) idLine.innerText = `User ID: ${currentUser.id}`;
       if (coinLine) coinLine.innerText = `Coin: ${currentUser.coin || 0}`;
     }
