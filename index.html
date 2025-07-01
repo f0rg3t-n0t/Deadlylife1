@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chapter 1-DAILY LIFE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet"/>
+  <style>
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f5f5f5;
+      color: black;
+      text-align: center;
+      padding: 2em;
+    }
+    .hidden { display: none; }
+
+#user-display {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  background-color: #F5F5F5;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+  font-family: monospace;
+  color: #3F40D3;
+  border: 1px solid #ddd;
+  min-width: 180px;
+}
+
+#persistent-nav {
+  position: fixed;
+  top: 110px;
+  left: 10px;
+  z-index: 9999;
+  display: none;
+  flex-direction: column;
+  gap: 4px; /* 버튼 사이 간격 줄임 */
+  background-color: #F5F5F5;
+  padding: 6px 8px; /* 네모 자체 여백 줄임 */
+  border-radius: 6px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ddd;
+  min-width: 140px; /* 폭도 작게 */
+}
+
+#persistent-nav button {
+  background-color: #3F40D3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 6px;     /* 버튼 내부 여백 줄임 */
+  margin: 0;            /* 버튼 외부 여백 제거 */
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;      /* 글자 크기 줄임 */
+  transition: background-color 0.2s ease;
+}
+
+#persistent-nav button:hover {
+  background-color: #2c2db2;
+}
+
+#barcode-icon {
+  width: 60px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+#user-text > div {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #3F40D3;  /* 혹시 상속이 안 될 수도 있으니 명시 */
+}
+    #bgm-player {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    #bgm-player button {
+      background-color: #3f40d3 !important;
+      color: white;
+    }
+
+    .fade-in {
+      animation: fadein 1.2s ease-in;
+            }
+  
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .typewriter {
+      font-weight: bold;
+      font-size: 1.1em;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #3f40d3;
+      width: 0;
+      animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
+      margin-bottom: 1em;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    @keyframes pop {
+    0% { transform: scale(0.7); opacity: 0; }
+    60% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+
+  #drink-result {
+    animation: pop 0.6s ease-out;
+    transition: all 0.2s ease;
+  }
+  
+    button {
+      font-size: 1em;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      background-color: #3f40d3;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2c2db2;
+    }
+    .nav-button {
+      background-color: #444 !important;
+      font-size: 0.85em !important;
+      padding: 5px 12px !important;
+    }
+    .logo {
+      width: 200px;
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+
+<!-- !!!!여기서부터 BODY!!!! -->
+<body>
+  <!-- 유저 디스플레이 -->
+<div id="user-display">
+  <img src="zzapbarcode.png" alt="barcode" id="barcode-icon">
+  <div id="user-text">
+    <p id="user-class-line">User ID : UNKNOWN</p>
+    <p id="coin-line">Coin : ???</p>
+  </div>
+</div>
+  <!-- 브금 플레이어 -->
+  <div id="bgm-player">
+    <audio id="bgm" src="zzapbgm.mp3" loop></audio>
+    <button onclick="document.getElementById('bgm').play()">▶</button>
+    <button onclick="document.getElementById('bgm').pause()">⏸</button>
+  </div>
+  
+  <!-- 로고 -->
+  <img class="logo" src="zzaplogo.png"/>
+  
+  <!-- 내비게이션 -->
+  <div id="persistent-nav">
+  <button onclick="goTo('main-page-2nd')">메인 화면</button>
+  <button onclick="goTo('guide')">조사 가이드</button>
+  <button onclick="goTo('starting-point')">건물 입구로</button>
+</div>
+  
+<!-- main-page 버튼 이미지 배치 -->
+<div id="main-page" class="hidden" style="position: relative; height: 100vh; background-color: #f5f5f5;">
+  <!-- Initiation -->
+  <img src="initiation.png" class="menu-button initiation" loading="lazy" onclick="goTo('starting-point')" alt="시작">
+  <!-- Guide -->
+  <img src="guide.png" class="menu-button guide" loading="lazy" onclick="goTo('guide')" alt="가이드">
+  <!-- Report -->
+  <img src="report.png" class="menu-button report" loading="lazy" onclick="goTo('report')" alt="종료">
+</div>
+<style>
+  .menu-button {
+    position: absolute;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform: translateX(0) scale(1); /* 애니메이션 최종 위치 */
+    transition: transform 0.4s ease;
+    opacity: 0;
+    pointer-events: none; /* 애니메이션 끝날 때까지 hover 방지 */
+  }
+  /* Initiation 버튼 */
+  .initiation {
+    top: 1%;
+    left: 39%;
+    width: 12%;
+    height: auto;
+    animation-name: slideInLeft;
+    animation-duration: 1.2s;
+    animation-delay: 0.2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+  }
+  /* Guide 버튼 */
+  .guide {
+    top: 17%;
+    right: 40%;
+    width: 14%;
+    height: auto;
+    animation-name: slideInRight;
+    animation-duration: 1.2s;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+  }
+
+  /* Report 버튼 */
+  .report {
+    top: 36%;
+    left: 39%;
+    width: 15%;
+    height: auto;
+    animation-name: slideInLeft;
+    animation-duration: 1.2s;
+    animation-delay: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+  }
+
+  /* 등장 애니메이션 정의 */
+  @keyframes slideInLeft {
+    0% {
+      transform: translateX(-80%) scale(0.9);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInRight {
+    0% {
+      transform: translateX(80%) scale(0.9);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+    }
+  }
+/* 공통 Hover 발광 효과 */
+.initiation:hover,
+.guide:hover,
+.report:hover {
+  filter: drop-shadow(0 0 8px rgba(63, 64, 211, 0.6)); /* #3F40D3 계열 빛 */
+  transition: filter 0.4s ease-in-out;
+}
+
+</style>
+
+<!-- !!!!여기서부터 작동시킬 페이지들!!!! -->
+  <!-- 로그인 화면 -->
+  <div id="login-page">
+    <p>ID를 입력하세요.</p>
+    <input id="id-input" type="text" />
+    <button onclick="checkLogin()">확인</button>
+    <p id="login-error" style="color: #ff4444;"></p>
+  </div>
+
+    <!-- guide 페이지 -->
+<div id="guide" class="hidden" style="padding: 3em; text-align: left; text-align: left; max-width: 700px; margin: 0 auto; background: white; border: 3px solid #3f40d3; border-radius: 10px; color: black;">
+  <p><span style="font-weight: bold; color: #3f40d3;">조사 가이드</span><br><br><br>
+    웹에서는 클릭, 모바일에서는 터치로 진행합니다. 자유롭게 종료하고 재실행하셔도 좋지만, 창을 닫거나 뒤로가기/새로고침할 시 진행 경과가 초기화되니 주의해 주세요.<br>
+    본 조사는 별도의 서버를 사용하지 않기 때문에 세션을 종료하면 결과가 저장되지 않습니다.<br><br>
+    메인 화면에서 '조사 종료→조사 마치기' 를 클릭하면 획득 코인을 알려 주는 화면이 표시됩니다. 최종 화면을 표시한 후에는 이전으로 돌아갈 수 없습니다.<br>
+    최종 화면을 스크린 캡처하여 총괄계 DM으로 보내 주시면 조사 완료 처리됩니다.</p>
+    <br>
+    <button class="nav-button" onclick="goBack()">나가기</button>
+</div>
+
+  <!-- 레포트 주의사항 -->
+  <div id="report" class="hidden">
+    <p>모든 조사를 마치고 최종 리포트를 작성합니다. 진행할 시 이전 단계로 되돌아갈 수 없습니다.<br>조사를 마칠까요?</p>
+    <button onclick="loadFinalReport()">조사를 마친다</button><br>
+    <button class="nav-button" onclick="goBack()">취소</button>
+  </div>
+  
+  <!-- 뒤로가기 적용된 메인 페이지 -->
+<div id="main-page-2nd" class="hidden" style="position: relative; height: 100vh; background-color: #f5f5f5;">
+  <!-- Initiation -->
+  <img src="initiation.png" class="menu-button initiation" onclick="goBack()" alt="시작">
+  <!-- Guide -->
+  <img src="guide.png" class="menu-button guide" onclick="goTo('guide')" alt="가이드">
+  <!-- Report -->
+  <img src="report.png" class="menu-button report" onclick="goTo('report')" alt="종료">
+  </div>
+  
+  <!-- 스타팅 포인트 -->  
+  <div id="starting-point" class="hidden">
+    <p><span style="font-weight: bold;">[건물 입구]</span><br><br>흰 관을 연상시키는 건물. 그 입구에 다다른다.<br>돌로 된 정문 표면에는 알 수 없는 문자가 빼곡히 음각으로 새겨져 있다. 무엇을 기록한 것인지는 알 수 없지만 이유 모를 깊이와 장엄함이 느껴진다.<br>이 입구를 기점 삼아 건물 안으로 들어가거나, 섬의 시설물을 둘러보고 돌아올 수 있을 것 같다.</p>
+    <button onclick="goTo('inside')">건물 안으로 들어간다</button>
+    <button onclick="goTo('outside')">건물 밖으로 나간다</button>
+  </div>
+
+  <!-- 내부 1층 --> 
+  <div id="inside" class="hidden">
+    <p><span style="font-weight: bold;">[건물 1층]</span><br><br>대리석 바닥이 반짝거리는 건물 1층.<br>정면에 방문객을 맞이하는 <span style="color: #3f40d3;">로비</span>가 보이고, 로비 뒤편에는 뒤편에는 유리로 된 <span style="color: #3f40d3;">엘리베이터</span>가 배치되어 있어 시선이 저절로 천장을 향한다.<br>더 안쪽에 있는 복도는 <span style="color: #3f40d3;">레스토랑</span>으로 이어지는 듯하다.</p>
+    <button onclick="goTo('lobby')">로비</button>
+    <button onclick="goTo('elevator')">엘리베이터</button>
+    <button onclick="goTo('restaurant')">레스토랑</button><br>
+    <button class="nav-button" onclick="goTo('starting-point')">건물 입구로 돌아가기</button>
+  </div>
+
+    <!-- 로비 --> 
+    <div id="lobby" class="hidden">
+    <p><span style="font-weight: bold;">[로비]</span><br><br>건물에 들어오면 가장 먼저 보게 되는 곳.<br>우아한 석조 <span style="color: #3f40d3;">카운터</span>를 중심으로 내빈을 위한 <span style="color: #3f40d3;">라운지</span>가 마련되어 있다.</p>
+    <button onclick="goTo('counter')">카운터</button>
+    <button onclick="goTo('waitingspace')">라운지</button><br>
+    <button class="nav-button" onclick="goTo('inside')">나가기</button>
+  </div>
+
+    <!-- 로비:카운터 --> 
+    <div id="counter" class="hidden">
+    <p><span style="font-weight: bold;">[로비]<br>[카운터]</span><br><br>보통이라면 직원이 서 있어야 할 카운터 너머에는 아무도 없다. 가까이 다가가자 공증인의 목소리가 울린다.<br><br><em>"섬 내부는 잘 돌아보고 계신가요?"</em><br><br><em>"꼼꼼히 둘러봐 주신 분들을 위해 작은 퀴즈를 준비했습니다. 기분이 내키신다면 말을 걸어 주세요. 잠시 쉬어가고 싶으실 때는 잡담을 주고받는 것도 좋겠죠."</em></p>
+    <button onclick="goTo('notary')">공증인과 대화하기</button><br>
+    <button class="nav-button" onclick="goTo('lobby')">나가기</button>
+ </div>
+    <!-- 로비:카운터:notary --> 
+    <div id="notary" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br>스피커를 통해 흘러나오는 목소리는 정중하고 부드럽다.<br><em>"어떤 일을 도와드릴까요?"</em></p>
+    <button id="nota1" onclick="goTodel('notary1', 'nota1')">이 섬에 대해서</button><br>
+    <button id="nota2" onclick="goTodel('notary2', 'nota2')">초세계급 기록자 로렘에 대해서</button><br>
+    <button id="nota3" onclick="goTodel('notary3', 'nota3')">공증인에 대해서</button><br>
+    <button onclick="goTo('notary4')">퀴즈를 푼다</button><br>
+    <button class="nav-button" onclick="goTo('counter')">대화를 끝낸다</button>
+ </div>
+    <!-- 로비:카운터:notary1 --> 
+    <div id="notary1" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br><em>"이 섬은 미래기관에서 초세계급 여러분을 위해 준비한 시설입니다. <br>본래대로라면 올해 안에 외부에 정식 공개될 예정이었지만… 로렘 님의 추도식을 위해 공개를 앞당기게 되었습니다. 그러다 보니 아직 마땅한 이름조차 없는 장소가 되었지만요.<br>여러분이 계신 동안 섬 이름 공모전이라도 하는 것이 좋을까요? 하하…"</em></p>
+    <button class="nav-button" onclick="goTo('notary')">다른 이야기</button>
+ </div>
+    <!-- 로비:카운터:notary2 --> 
+    <div id="notary2" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br><em>"아시다시피 로렘 님께서는 그 누구보다도 미래기관을 위하는 분이셨습니다.<br>이렇게 초세계급 여러분을 불러모으신 것도 본인을 위해서라기보다는 미래기관, 그리고 인류의 희망을 위해서가 아닐까요."</em></p>
+    <button class="nav-button" onclick="goTo('notary')">다른 이야기</button>
+ </div>
+    <!-- 로비:카운터:notary3 --> 
+    <div id="notary3" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br><em>"저는 로렘 님의 유언을 절차대로 집행하기 위해 만들어진 공증인 AI입니다. <br>이곳에 머무르시는 여러분의 편의를 위해 안내와 통번역을 포함한 다양한 역할도 함께 수행하고 있습니다. <br>섬 어디서든 말을 걸어 주시면 응답하겠습니다."</em></p>
+    <button id="nota3-1" onclick="goTodel('notary3-1', 'nota3-1')">AI보다는 사람이 좋다고 항의한다</button>
+    <button id="nota3-2" onclick="goTodel('notary3-2', 'nota3-2')">잘 부탁한다고 인사한다</button><br>
+ </div>
+    <!-- 로비:카운터:notary3-1 --> 
+    <div id="notary3-1" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br><em>"그렇군요… 희망에 부응할 수 없어 유감입니다."</em><br><br>공증인은 풀이 죽은 것 같다.</p>
+    <button class="nav-button" onclick="goTo('notary')">다른 이야기</button>
+ </div>
+    <!-- 로비:카운터:notary3-2 --> 
+    <div id="notary3-2" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br><em>"네, 잘 부탁드립니다. 초세계급 여러분의 편의를 위해 최선을 다하겠습니다."</em><br><br>공증인과 인사를 하자, 어느새 카운터 위에 반짝이는 코인이 하나 올라와 있다. 이건 선물일까?<br><span style="font-weight: bold;">1코인을 획득했다.</span></p>
+    <button class="nav-button" onclick="goTo('notary')">다른 이야기</button>
+ </div>
+      <!-- 로비:카운터:notary4 --> 
+    <div id="notary4" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br><em>"그럼 문제입니다. 초세계급 기록자 로렘 님의 생년월일을 아시는지요?"</em><br><br>8자리 숫자로 대답하자.</p>
+    <input type="text" id="secret-code-input">
+    <div id="codebox">
+    <button onclick="checkSecretCode()">확인</button>
+  </div>
+    <p id="secret-code-result"></p>
+    <button class="nav-button" onclick="goTo('notary')">다른 이야기</button>
+ </div>
+      <!-- 로비:카운터:notary5 --> 
+    <div id="notary5" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br><em>"정답입니다! 꽤 먼 곳까지 둘러보셨군요."</em><br><br>짝짝짝, 박수 소리가 울리나 싶더니 어느새 카운터 위에 동전 두 개가 놓여 있다. 퀴즈를 맞힌 보상인 것 같다.<br><span style="font-weight: bold;">2코인을 획득했다.</span></p>
+    <button class="nav-button" onclick="goTo('notary')">다른 이야기</button>
+ </div>
+  
+    <!-- 로비:라운지 --> 
+    <div id="waitingspace" class="hidden">
+    <p><span style="font-weight: bold;">[로비]<br>[라운지]</span><br><br>카운터 앞쪽에 배치된 라운지. <span style="color: #3f40d3;">소파</span>에 앉아 잠시 쉬어가거나 담소를 나누기에 좋은 곳이다.<br>라운지 양쪽으로는 큰 유리창이 나 있어 섬의 풍경이 한눈에 들어온다.<br>잔잔한 파도가 치는 바닷가, 그 위를 평화롭게 날아다니는 바닷새들…<br>라운지 중앙에는 무료함을 달래기 위해서인지 작은 <span style="color: #3f40d3;">책꽂이</span>가 설치되어 있다. </p>
+    <button onclick="goTo('sofa')">소파</button>
+    <button onclick="goTo('bookshelf')">책꽂이</button><br>
+    <button class="nav-button" onclick="goTo('lobby')">나가기</button>
+ </div>
+
+    <!-- 로비:라운지:소파 --> 
+    <div id="sofa" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[소파]</span><br><br>
+    멋들어진 흰색 소파가 여러 개 놓여 있다. 누군가를 기다릴 때 앉아 있기 딱일 것 같다. 잠깐 앉아서 휴식을 취해 볼까?</p>
+    <button id="sit" onclick="goTodel('sofa1', 'sit')">앉는다</button><br>
+    <button class="nav-button" onclick="goTo('waitingspace')">나가기</button>
+ </div>
+  
+      <!-- 로비:라운지:소파에 앉기 --> 
+    <div id="sofa1" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[소파]</span><br><br>
+    소파를 감싸고 있는 천의 촉감은 무척 부드럽고, 등을 받치는 쿠션은 딱 좋을 정도로 푹신하다.<br>창문 너머로 들어오는 햇빛을 받으며 계속 앉아 있으니 어쩐지 졸음이 쏟아진다...</p>
+    <button onclick="goTo('sofa1-1')">잠깐 눈을 붙인다</button><br>
+    <button onclick="goTo('sofa1-2')">졸음은 기합으로 이겨낸다!</button><br>
+    <button onclick="goTo('sofa1-3')">소파의 재질을 탐구하며 졸음을 잊어 본다</button>
+ </div>
+
+    <!-- 로비:라운지:소파 1-1 --> 
+    <div id="sofa1-1" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[소파]</span><br><br>
+    어차피 자유시간이겠다, 잠깐 휴식을 취해서 안 될 것도 없겠지... 잠시 눈을 감기로 한다.<br><br>... ...<br><br>얼마나 시간이 지난 거지? 눈을 떠 보니 머리맡에 코인이 하나 놓여 있다. 그 옆에는... 쪽지?
+    <br><em>'일상 속에서 숨을 돌리는 시간은 중요합니다. 휴식의 소중함을 아는 당신에게.'</em><br>무척 기분 좋은 수면이었다. <span style="font-weight: bold;">1코인을 획득했다.</span></p>
+    <button class="nav-button" onclick="goTo('waitingspace')">나가기</button>
+ </div>
+
+      <!-- 로비:라운지:소파 1-2 --> 
+    <div id="sofa1-2" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[소파]</span><br><br>
+    모처럼 나왔는데 잠이나 자고 있을 수는 없지! 졸음은 기합으로 이겨낸다.<br>벌떡! 자리에서 일어났다... 세수라도 하고 올까?</p>
+    <button class="nav-button" onclick="goTo('waitingspace')">나가기</button>
+ </div>
+
+      <!-- 로비:라운지:소파 1-3 --> 
+    <div id="sofa1-3" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[소파]</span><br><br>
+    음. 이 천은 벨벳인 걸까? 촉감이 아주 고급스럽군...<br>소파를 구석구석 살펴보며 졸음을 잊어 보려고 노력했다.<br>여기저기 들여다보다 보니 소파 아래쪽에 떨어진 코인을 하나 발견했다. 이거, 눈이 번쩍 뜨이네!<br>무척 기분 좋은 수면이었다.<span style="font-weight: bold;">1코인을 획득했다.</span></p>
+    <button class="nav-button" onclick="goTo('waitingspace')">나가기</button>
+ </div>
+  
+    <!-- 로비:라운지:책꽂이 --> 
+    <div id="bookshelf" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[책꽂이]</span><br><br>
+    책의 종류는 많지 않다. 미래기관이나 초세계급에 대한 책자가 대부분이다.<br>살짝 살펴볼까?</p>
+    <button onclick="goToWithSound('book1','zzapbook.mp3')">《섬 안내서》</button><br>
+    <button onclick="goToWithSound('book2','zzapbook.mp3')">《궁금해요! 초세계급 A to Z》</button><br>
+    <button onclick="goToWithSound('book3','zzapbook.mp3')">《미래기관 연감》</button><br>
+    <button class="nav-button" onclick="goTo('waitingspace')">나가기</button>
+ </div>
+
+
+    <!-- 로비:라운지:책1 --> 
+    <div id="book1" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[책꽂이]</span><br><br>
+    흰 표지의 책.<br><br>섬의 약도와 더불어 여러 안내가 쓰여 있다. <br><br>
+‘이 섬은 다양한 야생 새들의 서식지입니다. 특히 여러 해양 조류를 만나 보실 수 있습니다. 새들을 위해 건물의 모든 유리창에는 조류 충돌 방지 필름을 부착하고 있으니 안심하세요.’<br>…<br>
+‘몸이 찌뿌둥할 때는 운동이 특효약이라고 합니다. 바다를 바라보며 자전거 타기는 어떠신가요?’<br>…<br>
+‘섬 어딘가에는 소원을 들어 주는 마법 같은 호수가 있다고 합니다. 진심을 다해 빌면 오랜 바람이 이루어질지도 모릅니다.’ ... 등등.</p>
+    <button class="nav-button" onclick="goTo('bookshelf')">나가기</button>
+ </div>
+
+      <!-- 로비:라운지:책2 --> 
+    <div id="book2" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[책꽂이]</span><br><br>
+푸른색 표지의 책.<br><br>초세계급으로 선발된 인원들에 대한 소개를 담고 있다.<br><br>초세계급의 평균 신장은 168.4cm, 2025년 기준 평균 연령은 만 29.8세…<br>…<br>…이런 정보까지 기록했다고?</p>
+    <button class="nav-button" onclick="goTo('bookshelf')">나가기</button>
+ </div>
+
+    <!-- 로비:라운지:책3 --> 
+    <div id="book3" class="hidden">
+    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[책꽂이]</span><br><br>
+    두꺼운 회색 표지의 책.<br><br>미래기관의 설립 과정과 활동 기록을 정리했다.<br><br>미래기관이 설립된 연도는 2000년. 그 이후 범지구적 과제를 해결하기 위해 다방면의 활동을 거듭해 왔다.<br>미래기관 설립으로부터 25년이 지난 지금도 인류는 수많은 역경을 마주하고 있지만, 우리의 노력은 분명 세상을 조금 더 나은 곳으로 만들었을 것이다.</p>
+    <button class="nav-button" onclick="goTo('bookshelf')">나가기</button>
+ </div>
+  
+    <!-- 로비:엘리베이터 --> 
+    <div id="elevator" class="hidden">
+    <p><span style="font-weight: bold;">[엘리베이터]</span><br><br>유리로 되어 있어 내부가 전부 들여다보이는 엘리베이터.<br>이 건물은 엘리베이터 주변의 공간이 뻥 뚫린 구조로 설계된 모양이다. 층고가 꽤 높아 보이는데 몇 층까지 있는 걸까...</p>
+    <button onclick="goTo('elevator1')">탑승한다</button><br>
+    <button class="nav-button" onclick="goTo('inside')">나가기</button>
+ </div>      
+  
+      <!-- 로비:엘리베이터:탑승 --> 
+    <div id="elevator1" class="hidden">
+    <p><span style="font-weight: bold;">[엘리베이터]</span><br><br>원하는 층으로 이동할 수 있다.<br>하지만 3층 이상부터는 정비 중인지, 버튼을 눌러도 불이 들어오지 않는다.</p>
+    <button onclick="goToWithSound('inside','zzapelevator.mp3')">1층</button><br>
+    <button onclick="goToWithSound('2ndfloor','zzapelevator.mp3')">2층</button><br>
+ </div>     
+  
+    <!-- 레스토랑 --> 
+    <div id="restaurant" class="hidden">
+    <p><span style="font-weight: bold;">[레스토랑]</span><br><br>이곳에 모인 초세계급들의 식사를 책임지는 레스토랑. 식사를 하며 바깥 풍경을 바라볼 수 있도록 유리창이 나 있다.
+    <br>레스토랑 입구에는 <span style="color: #3f40d3;">음료 디스펜서</span>가 배치되어 있고, 멋들어진 양탄자를 따라 내부로 들어가면 긴 <span style="color: #3f40d3;">테이블</span>이 놓여 있다.<br>벽 한켠에 있는 작은 문은 <span style="color: #3f40d3;">조리실</span>로 통하는 모양이다.</p>
+    <button onclick="goTo('dispenser')">음료 디스펜서</button>
+    <button onclick="goTo('table')">테이블</button>
+    <button onclick="goTo('kitchen')">조리실</button><br>
+      <button class="nav-button" onclick="goTo('inside')">나가기</button>
+  </div>
+
+  <!-- 레스토랑 : 음료 디스펜서 --> 
+  <div id="dispenser" class="hidden">
+  <p><span style="font-weight: bold;">[레스토랑]/[음료 디스펜서]</span><br><br>
+  커피나 차 등의 음료를 자유롭게 이용 가능한 디스펜서. 기본적인 음료는 물론, 여러 가지 맛의 원두와 티백, 시럽도 비치되어 있어 얼마든지 원하는 음료를 제조 가능할 것 같다.<br>
+  한쪽에는 '랜덤 디스펜서 : 1일 3회 이용 가능' 이라고 적힌 검은 상자가 있는데... 여기서는 뭐가 나오는 걸까?<br>그 옆에는 '랜덤 음료 공모전' 이라고 적힌 투표함이 놓여 있다.</p>
+  <button onclick="goTo('dispenser1')">음료를 뽑는다</button>
+  <button onclick="goTo('dispenser2')">랜덤 음료 공모전</button><br>
+  <button class="nav-button" onclick="goTo('restaurant')">나가기</button>
+  </div>
+  
+  <!-- 레스토랑 : 음료 디스펜서 1 (음료를 뽑는다) -->
+  <div id="dispenser1" class="hidden">
+  <p><span style="font-weight: bold;">[레스토랑]/[음료 디스펜서]</span><br><br>
+  원하는 음료를 가져가거나 랜덤 디스펜서를 이용해 보자. 랜덤 디스펜서는 1일 3회 사용 제한이 있는 것 같지만...</p>
+  <button onclick="selectDrink('coffee')">커피</button>
+  <button onclick="selectDrink('green-tea')">녹차</button>
+  <button onclick="selectDrink('orange-juice')">오렌지 주스</button>
+  <button onclick="selectRandomDrink()">랜덤</button>
+  <p id="drink-result" style="margin-top: 2em; font-weight: bold;"></p>
+  <button class="nav-button" onclick="goTo('dispenser')">나가기</button>
+</div>
+
+    <!-- 레스토랑 : 음료 디스펜서 2 (음료 공모전) -->
+  <div id="dispenser2" class="hidden">
+  <p><span style="font-weight: bold;">[레스토랑]/[음료 디스펜서]</span><br><br>
+  "랜덤 음료 공모전. 당신이 원하는 음료의 이름을 적어서 제출하면 검토 후 랜덤 음료 디스펜서에 출시될지도... 초세계급 여러분의 많은 참여 바랍니다!"<br>라고 쓰여 있다. 한 사람당 2개까지 응모 가능한 모양이다.</p>
+   <input type="text" id="gongmo">
+  <div id="gongmobox" style="display: block; margin-top: 1em;">
+  <button onclick="addgongmo()">확인</button>
+  </div>
+    <p id="gongmo-result"></p>
+  <button class="nav-button" onclick="goTo('dispenser')">나가기</button>
+</div>
+
+    <!-- 레스토랑 : 테이블 --> 
+  <div id="table" class="hidden">
+  <p><span style="font-weight: bold;">[레스토랑]/[테이블]</span><br><br>
+  1일 3회, 식사 시간마다 각종 음식이 차려지곤 하는 테이블. 다양한 문화와 취향, 영양소까지 고루 고려한 식사가 나온다.<br>
+  지금은 식사 대신 간식이 놓여 있다. 케이크, 화과자, 라스굴라, 터키쉬 딜라이트...<br>걸어다니다 지칠 때 한두 개 집어 가도 좋겠다.</p>
+  <button class="nav-button" onclick="goTo('restaurant')">나가기</button>
+  </div>
+
+      <!-- 레스토랑 : 조리실 --> 
+  <div id="kitchen" class="hidden">
+  <p><span style="font-weight: bold;">[레스토랑]/[조리실]</span><br><br>
+  조리는 물론 설거지나 정리까지 완전 자동화된 신식 주방. 지켜보는 사람이 아무도 없어도 요리가 가능하다.<br>
+  물론 원한다면 자동화 설비에 맡기는 대신 직접 <span style="color: #3f40d3;">조리대</span>에서 요리를 할 수도 있다. <span style="color: #3f40d3;">냉장고</span>와 <span style="color: #3f40d3;">찬장</span>에 요리에 필요한 재료와 물건들이 구비되어 있다.</p>
+  <button onclick="goTo('cooker')">조리대</button>
+  <button onclick="goTo('fridge')">냉장고</button>
+  <button onclick="goTo('drawer')">찬장</button><br>
+  <button class="nav-button" onclick="goTo('restaurant')">나가기</button>
+  </div>
+
+  <!-- 레스토랑 : 조리실 : 찬장 --> 
+  <div id="drawer" class="hidden">
+  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[찬장]</span><br><br>
+  냉장 보관하지 않아도 되는 식재료들이 가득 들어 있다. 소스류, 빵, 보존 식품 등등...<br>
+  여기 있는 음식만으로도 꽤 근사한 식사를 할 수 있을 것 같다.</p>
+  <button id="sikpang" onclick="goTodel('drawer1', 'sikpang')">식빵 한 장 가져가기</button><br>
+  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
+  </div>
+
+  <!-- 레스토랑 : 조리실 : 찬장 1 --> 
+  <div id="drawer1" class="hidden">
+  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[찬장]</span><br><br>
+  식빵 한 장을 가져갔다. 향긋한 빵 냄새가 기분 좋다.</p>
+  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
+  </div>
+  
+  <!-- 레스토랑 : 조리실 : 조리대 --> 
+  <div id="cooker" class="hidden">
+  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[조리대]</span><br><br>
+  가스레인지, 오븐, 토스터 등을 갖춘 조리대. 요리를 할 때에는 늘 화재에 조심.<br>
+  지금 제대로 된 요리를 하기에는 시간이 없지만, 식빵이 있다면 간단하게 토스트 정도는 만들 수 있으려나?</p>
+  <button id="toastbtn" onclick="maketoast('toastbtn')">식빵 굽기</button><br>
+  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
+  </div>
+
+  <!-- 레스토랑 : 조리실 : 조리대 : 토스터 --> 
+  <div id="toaster" class="hidden">
+  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[조리대]</span><br><br>
+  식빵을 토스터에 넣었다!<br>
+  몇 초 정도 굽는 게 좋을까?</p>
+  <button onclick="goTo('overcook')">600초</button>
+  <button onclick="goTo('undercook')">3초</button>
+  <button id="toasttimebtn" onclick="toasttime('toasttimebtn')">운명에 맡긴다</button><br>
+  </div>
+
+  <!-- 레스토랑 : 조리실 : 조리대 : 토스터 600초 --> 
+  <div id="overcook" class="hidden">
+  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[조리대]</span><br><br>
+  ......<br>......<br>
+  토스트는 끔찍하게 타 버렸다. 이런 건 먹을 수 없어...<br>새까매진 식빵이 처량하게 바스러졌다.</p>
+  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
+  </div>
+
+  <!-- 레스토랑 : 조리실 : 조리대 : 토스터 3초 --> 
+  <div id="undercook" class="hidden">
+  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[조리대]</span><br><br>
+  이거 구운 거 맞아?! 토스트는 딱 3초간 따뜻한 열기를 쐬었을 뿐이다.<br>이래서야 맨 식빵과 다름없겠군... 그래도 먹을 수는 있다.</p>
+  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
+  </div>
+
+  <!-- 레스토랑 : 조리실 : 조리대 : 토스터 퍼펙트 --> 
+  <div id="perfect" class="hidden">
+  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[조리대]</span><br><br>
+  완벽한 골든 브라운 토스트다! 겉은 바삭하고 안쪽은 부드럽게 결이 살아 있다.<br>운명에 맡겼는데 이 정도라니, 럭키!</p>
+  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
+  </div>
+  
+  <!-- 레스토랑 : 조리실 : 냉장고 --> 
+  <div id="fridge" class="hidden">
+  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[냉장고]</span><br><br>
+  주방 한켠에 자리잡은 냉장고. 어마어마하게 크다. 보통 냉장고의 2~3배 크기는 되는 것 같다.<br>
+  금속 문이 꽤 무거워 보이는데, 이거... 사람 힘으로 열 수는 있는 건가?</p>
+  <button id="fridgebtn" onclick="openfridge('fridgebtn')">열어 본다</button><br>
+  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
+  <p id="fridge-result"></p>
+  </div>
+
+  <!-- 레스토랑 : 조리실 : 냉장고 1 --> 
+  <div id="fridge1" class="hidden">
+  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[냉장고]</span><br><br>
+  영차! 온 힘을 다해 당겼더니 겨우 열렸다. 냉장고 안은 식재료로 꽉 채워져 있다.<br>
+  파릇파릇한 야채, 신선한 육류, 유제품과 계란... 기본적인 재료부터 값나가는 고급 식재료까지 무엇이든 구비되어 있다.<br>이 냉장고의 문을 열 수 있을 정도로 강한 사람에게만 주어지는 식재료의 향연이다...</p>
+  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
+  </div>
+
+    <!-- 2층 --> 
+    <div id="2ndfloor" class="hidden">
+    <p><span style="font-weight: bold;">[2층]</span><br><br>왼쪽 복도는 <span style="color: #3f40d3;">내빈용 객실</span>로, 오른쪽 복도는 <span style="color: #3f40d3;">회의실</span>로 이어진다. 1층으로 돌아갈 때는 엘리베이터를 이용하자.</p>
+    <button onclick="goTo('elevator1')">엘리베이터</button><br>
+    <button onclick="goTo('suite')">내빈용 객실</button>
+    <button onclick="goTo('office')">회의실</button><br>
+ </div>     
+  
+    <!-- 내빈용 객실 --> 
+    <div id="suite" class="hidden">
+    <p><span style="font-weight: bold;">[내빈용 객실]</span><br><br>이 자리에 초청된 초세계급들이 편히 쉴 수 있도록 <span style="color: #3f40d3;">개인실</span>이 준비되어 있다.<br>문 앞에 붙은 명패에는 각자의 이름과 재능이 쓰여 있어 찾아가기 편하다.<br>객실이 이어지는 복도 끝에는 '<span style="color: #3f40d3;">비품실</span>'이라고 표시된 작은 방이 보인다.</p>
+    <button onclick="goTo('suite1')">개인실</button>
+    <button onclick="goTo('bipum')">비품실</button><br>
+    <button class="nav-button" onclick="goTo('2ndfloor')">나가기</button>
+  </div>
+
+    <!-- 내빈용 객실 --> 
+    <div id="suite1" class="hidden">
+    <p><span style="font-weight: bold;">[내빈용 객실]/[개인실]</span><br><br>깔끔하게 정돈된 스위트룸이다. 책상, 의자, 침대, 샤워실, 화장실... 생활에 필요한 것은 전부 있다.<br>개인실 천장에는 작은 스피커가 설치되어 있는 것이 보인다.<br>그러고 보니, 섬 어디에나 스피커가 있었지...</p>
+    <button class="nav-button" onclick="goTo('suite')">나가기</button>
+  </div>
+
+    <!-- 비품실 --> 
+    <div id="bipum" class="hidden">
+    <p><span style="font-weight: bold;">[내빈용 객실]/[비품실]</span><br><br>생활에 필요한 각종 비품을 구비해 두는 곳.<br>휴지나 종이컵 같은 일회용품부터 각종 청소용구까지, 없는 게 없다.<br>비품실 한가운데에 커다란 <span style="color: #3f40d3;">도구함</span>이 뚜껑이 닫힌 채로 놓여 있다.</p>
+    <button onclick="goTo('bipum1')">도구함을 연다</button><br>
+    <button class="nav-button" onclick="goTo('suite')">나가기</button>
+  </div>
+  
+      <!-- 비품실 : 도구함 --> 
+    <div id="bipum1" class="hidden">
+    <p><span style="font-weight: bold;">[내빈용 객실]/[비품실]</span><br><br>도구함의 뚜껑을 들어올리면, 그 안에는 톱, 전동 가위, 도끼 같은 물건들이 가지런히 들어 있다.<br>아무래도 위험한 물건들이다 보니 따로 보관하는 모양이다.</p>
+    <button class="nav-button" onclick="goTo('bipum')">나가기</button>
+  </div>
+  
+    <!-- 회의실 --> 
+    <div id="office" class="hidden">
+    <p><span style="font-weight: bold;">[회의실]</span><br><br>세미나 등을 진행할 수 있는 회의실. 사무실의 역할도 겸하고 있는지 전화기, 프린터기 등도 배치되어 있다.<br>이곳에 머무는 초세계급이라면 자유롭게 이용할 수 있는 것 같다.
+    <br>물론 지금 당장은 회의실을 사용할 만한 안건이 없지만, 어떤 물건이 구비되어 있는지 확인해 둬서 나쁠 것은 없겠지.<br><span style="color: #3f40d3;">사무용 책상</span>과 그 위의 <span style="color: #3f40d3;">컴퓨터</span>가 눈에 띈다.</p>
+    <button onclick="goTo('pcdesk')">사무용 책상</button>
+    <button onclick="goTo('computer')">컴퓨터</button><br>   
+    <button class="nav-button" onclick="goTo('2ndfloor')">나가기</button>
+  </div>
+
+    <!-- 회의실 : 사무용 책상 --> 
+    <div id="pcdesk" class="hidden">
+    <p><span style="font-weight: bold;">[회의실]/[사무용 책상]</span><br><br>책상 위에는 고급스러운 펜과 메모장이 놓여 있다. 명패는 없지만 꼭 대중 매체에 나오는 대기업 임원의 책상 같은 느낌이다...<br>책상 아래에는 서랍이 달려 있다.</p>
+    <button onclick="goTo('pcdesk1')">서랍을 연다</button><br>
+    <button class="nav-button" onclick="goTo('office')">나가기</button>
+  </div>
+  
+      <!-- 회의실 : 사무용 책상 : 서랍--> 
+    <div id="pcdesk1" class="hidden">
+    <p><span style="font-weight: bold;">[회의실]/[사무용 책상]</span><br><br>서랍 안에는 각종 비품과 더불어 구급상자가 하나 놓여 있다.<br>열어 보면 웬만한 응급처치는 가능할 정도로 다양한 용품이 들어 있다.<br>밴드와 붕대는 물론이고, 상비약, 체온계, 간이 드레싱 키트... 조금 다치더라도 걱정없겠는데?</p>
+    <button class="nav-button" onclick="goTo('office')">나가기</button>
+  </div>
+
+      <!-- 회의실 : 컴퓨터 --> 
+    <div id="computer" class="hidden">
+    <p><span style="font-weight: bold;">[회의실]/[컴퓨터]</span><br><br>웹 서핑이 가능한 컴퓨터. 화상 통화 어플리케이션과 문서 편집 프로그램이 설치되어 있다.<br>섬이지만 인터넷이 문제없이 연결되는 모양이다.</p>
+    <button class="nav-button" onclick="goTo('office')">나가기</button>
+  </div>
+
+  
+    <!-- 바깥 1층 --> 
+    <div id="outside" class="hidden">
+    <p><span style="font-weight: bold;">[건물 바깥]</span><br><br>소금기 섞인 바람이 저편에서부터 불어온다. 바깥은 더할 나위 없이 평화롭다.<br>건물에서 나가는 길을 쭉 따라가면 <span style="color: #3f40d3;">항구</span>로 이어진다.<br>항구에서 조금 떨어진 곳에 <span style="color: #3f40d3;">메모리얼 파크</span>가 위치해 있고, 묘지에서 섬 뒤편으로 이어지는 <span style="color: #3f40d3;">산책로</span>가 희미하게 보인다.</p>
+    <button onclick="goToWithSound('port', 'zzapwalk_seaside.wav')">항구</button>
+    <button onclick="goToWithSound('memorial', 'zzapwalk_seaside.wav')">메모리얼 파크</button>
+    <button onclick="goToWithSound('street', 'zzapwalk_seaside.wav')">산책로</button><br>
+    <button class="nav-button" onclick="goTo('starting-point')">건물 입구로 돌아가기</button>
+  </div>
+
+    <!-- 항구 --> 
+    <div id="port" class="hidden">
+    <p><span style="font-weight: bold;">[항구]</span><br><br>배를 정박시킬 수 있는 작은 항구. 이 섬이 바깥 세상과 연결되어 있음을 알려 주는 유일한 표식이다.<br>소금 냄새가 선명해짐과 동시에 갈매기 우는 소리가 들려온다.<br><br>
+    <span style="color: #737373;">'항구 안쪽으로 들어간다' 버튼 클릭 시 효과음이 재생됩니다.</span></p>
+    <button onclick="goToWithSoundNL('port1', 'zzapport.mp3')">항구 안쪽으로 들어간다</button><br>    
+    <button class="nav-button" onclick="goTo('outside')">나가기</button>
+  </div>
+  
+    <!-- 항구 : 1 --> 
+      <div id="port1" class="hidden">
+    <p><span style="font-weight: bold;">[항구]</span><br><br>작은 규모의 항구에는 이곳으로 올 때 탔던 <span style="color: #3f40d3;">배</span>가 단단히 닻을 내린 채로 선착장에 머무르고 있다.<br>그 옆으로 이어지는 <span style="color: #3f40d3;">백사장</span>에서는 제법 휴양지 분위기가 풍긴다.</p>
+    <button onclick="goTo('ship')">배</button>
+    <button onclick="goTo('sand')">백사장</button><br>
+    <button class="nav-button" onclick="goToWithoutzzapsea('port')">나가기</button>
+  </div>
+
+      <!-- 항구 : 배 --> 
+      <div id="ship" class="hidden">
+    <p><span style="font-weight: bold;">[항구]<br>[배]</span><br><br>
+      세계 각지에서 모인 초세계급들을 이곳으로 데려다 준 배. 작지만 섬세한 이 배 덕분에 바다 위를 가로지르는 여행은 무척 평온했다.<br>크게 <span style="color: #3f40d3;">선실</span>과 <span style="color: #3f40d3;">갑판</span>으로 나뉜 구조.</p>
+    <button onclick="goTo('cabin')">선실</button>
+    <button onclick="goTo('deck')">갑판</button><br>
+    <button class="nav-button" onclick="goTo('port1')">나가기</button>
+  </div>
+
+      <!-- 항구 : 배 : 선실 --> 
+      <div id="cabin" class="hidden">
+    <p><span style="font-weight: bold;">[항구]/[배]<br>[선실]</span><br><br>
+     선실 안의 공기는 따뜻하다. 감각을 집중하고 가만히 있으면 파도가 배를 조금씩 흔드는 것이 느껴지는 아늑한 공간이다.<br>여러모로 신경을 기울여 만든 공간임이 틀림없다.<br><br>이 배도 미래기관의 소유라고 했지. 그러고 보니 무인선이라고 했던가?</p>
+    <button class="nav-button" onclick="goTo('ship')">나가기</button>
+  </div>
+  
+        <!-- 항구 : 배 : 갑판 --> 
+      <div id="deck" class="hidden">
+    <p><span style="font-weight: bold;">[항구]/[배]<br>[갑판]</span><br><br>
+     갑판에 오르는 순간 시원한 바람이 온몸을 휘감는다.<br>배 위쪽에서 바라보자 섬 전체의 풍경이 한눈에 들여다보인다. 평평하게 잘 다듬어진 섬, 한가운데에 우뚝 선 흰 건물...<br><br>풍경을 바라보고 있자 갈매기 우는 소리가 바로 옆에서 들린다.<br>마침 '갈매기 먹이용' 이라고 쓰인 과자 통이 갑판 난간에 매달려 있긴 한데...</p>
+      <button id="galmaegi" onclick="goTodel('birdfeed', 'galmaegi')">갈매기 먹이 주기</button><br>
+      <button class="nav-button" onclick="goTo('ship')">나가기</button>
+  </div>
+
+    <!-- 항구 : 배 : 갑판 : 갈매기 먹이 주기 --> 
+    <div id="birdfeed" class="hidden">
+    <p><span style="font-weight: bold;">[항구]/[배]<br>[갑판]</span><br><br>
+    과자 통의 뚜껑을 들어올리는 순간, 눈치 빠른 갈매기들이 한꺼번에 울어 대며 몰려들기 시작한다!<br>귀엽다는 감상도 잠시, 잠깐만... 너무 맹렬하게 돌격해 오는 것 아닌가?!?!<br>순식간에 갈매기 떼에 포위당하고 말았다... 절체절명!</p>
+   <button id="gwakgwak" onclick="feedgalmaegi('gwakgwak')">먹이를 ... 준다!</button><br>
+   <button onclick="goTo('feed4')">포기하고 도망친다!</button>
+  </div>
+
+      <!-- 항구 : 배 : 갑판 : 갈매기 먹이 주기 1(정<=2) --> 
+    <div id="feed1" class="hidden">
+    <p><span style="font-weight: bold;">[항구]/[배]<br>[갑판]</span><br><br>
+    어떻게든 상황을 수습해야 해…! 과자 통을 열어보려 했지만, 갈매기들의 기백에 완전히 압도당하고 말았다…<br>기가 눌려서인지, 손이 제대로 움직이지 않는다.<br>갈매기들이 매섭게 달려들어 몸 이곳저곳을 쪼기 시작한다. 아야야…!<br><br>흉폭한 새들은 한참 동안 항의와 분노의 표시를 하다가 돌아갔다…<br>정신력으로 이길 각오가 없다면 함부로 과자 통을 열어서는 안 되는 거구나…</p>
+     <button class="nav-button" onclick="goTo('deck')">나가기</button>
+  </div>
+
+        <!-- 항구 : 배 : 갑판 : 갈매기 먹이 주기 2(정>=4) --> 
+    <div id="feed2" class="hidden">
+    <p><span style="font-weight: bold;">[항구]/[배]<br>[갑판]</span><br><br>
+   위협에도 아랑곳않고 과감히 과자 통을 열고는 갈매기들에게 강력한 시선을 보냈다!<br>갈매기들의 울음소리가 확 줄어들었다. 설마 기세 싸움에서 이긴 걸까?<br><br>얌전해진 새들은 과자를 잘 받아먹은 뒤 돌아가는가 싶더니… 어디선가 반짝 빛나는 코인 하나를 물고 돌아왔다.<br><br><span style="font-weight: bold;">1코인을 획득했다.</span></p>
+      <button class="nav-button" onclick="goTo('deck')">나가기</button>
+  </div>
+
+    <!-- 항구 : 배 : 갑판 : 갈매기 먹이 주기 3(정=3) --> 
+    <div id="feed3" class="hidden">
+    <p><span style="font-weight: bold;">[항구]/[배]<br>[갑판]</span><br><br>
+   과자 통에 손을 얹은 채로 한동안 갈매기들과 대치했다.<br><br>…<br>…<br><br>긴장감을 유지하며 하나씩 과자를 꺼내자, 갈매기들은 만족스럽게 과자를 먹고 바다 저편으로 날아갔다…<br>갈매기 먹이 주기는 생각보다 각오가 필요한 일이었다. </p>
+      <button class="nav-button" onclick="goTo('deck')">나가기</button>
+  </div>
+
+      <!-- 항구 : 배 : 갑판 : 갈매기 먹이 주기 4(도망) --> 
+    <div id="feed4" class="hidden">
+    <p><span style="font-weight: bold;">[항구]/[배]<br>[갑판]</span><br><br>
+    제발 공격하지 마…!!<br>과자 통이고 뭐고, 허겁지겁 그 자리에서 벗어났다. 다행히 쫓아오지는 않을 생각인가 보다…<br>갈매기는 생각보다 무서운 존재라는 사실을 배웠다. 휴…</span></p>
+      <button class="nav-button" onclick="goTo('deck')">나가기</button>
+   </div>
+
+  
+        <!-- 항구 : 백사장 --> 
+      <div id="sand" class="hidden">
+    <p><span style="font-weight: bold;">[항구]<br>[백사장]</span><br><br>
+    끝없는 바다와 모래사장이 시야를 채운다.<br>너울거리는 파도가 흰 모래에 섞여 부서지고, 열기를 싣은 바람이 피부를 간질인다.<br>기분 좋은 날씨를 만끽할 수 있는 백사장.<br>육지와 가까운 곳에 <span style="color: #3f40d3;">망원경</span>이 몇 개 설치되어 있다.</p>
+    <button id="mangwongyeong" onclick="goTodel('sand1', 'mangwongyeong')">망원경을 사용한다</button><br>
+    <button class="nav-button" onclick="goTo('port1')">나가기</button>
+  </div>
+
+          <!-- 항구 : 백사장:망원경 --> 
+      <div id="sand1" class="hidden">
+    <p><span style="font-weight: bold;">[항구]<br>[백사장]</span><br><br>
+    이 망원경은 바닷새들을 관찰하는 용도로 만들어진 것 같다. 조류 도감에서 발췌한 페이지들이 코팅된 채 망원경에 걸려 있다.<br>그럼 어디 한 번 탐조를 시작해 볼까...</p>
+   <button id="gwak" onclick="watchbird('gwak')">탐조를 시작한다</button><br>
+  </div>
+
+              <!-- 항구 : 백사장:망원경2 (실패) --> 
+      <div id="sand2" class="hidden">
+    <p><span style="font-weight: bold;">[항구]<br>[백사장]</span><br><br>
+    망원경에 얼굴을 가져다 댄 채로 한참 동안 기다렸지만 출렁거리는 파도만이 보일 뿐이었다…<br>아니, 방금까지만 해도 새들이 많았던 것 같은데...<br>스스로의 관찰력을 원망할 수밖에. 탐조는 장렬히 실패했다...</p>
+    <button class="nav-button" onclick="goTo('sand')">나가기</button>
+  </div>
+
+            <!-- 항구 : 백사장:망원경3 (성공) --> 
+      <div id="sand3" class="hidden">
+    <p><span style="font-weight: bold;">[항구]<br>[백사장]</span><br><br>
+    잠시 망원경을 들여다보고 있으면... 갈색 깃털에, 검은 부리를 가진 새가 비행하는 모습이 눈에 들어온다.<br>이 새 이름은 뭐지? '넓적부리도요'...?<br>아무래도 희귀한 보호종을 관찰한 것 같다! 탐조는 대성공이다.</p>
+    <button class="nav-button" onclick="goTo('sand')">나가기</button>
+  </div>
+
+              <!-- 항구 : 백사장:망원경4 (그냥그럼) --> 
+      <div id="sand4" class="hidden">
+    <p><span style="font-weight: bold;">[항구]<br>[백사장]</span><br><br>
+    잠시 망원경을 들여다보고 있으면... 끼룩끼룩, 갈매기들의 모습이 보인다.<br>확대해서 보니 뭔가 유달리 생생한 것 같기도 하고...<br>희귀한 새를 찾은 것은 아니지만, 그럭저럭 나쁘지 않은 탐조였을지도.</p>
+    <button class="nav-button" onclick="goTo('sand')">나가기</button>
+  </div>
+  
+
+  
+    <!-- 메모리얼 파크 --> 
+    <div id="memorial" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크 입구]</span><br><br>흰 울타리로 둘러싸여 구획지어진 공간이 바다와 접하고 있다.<br>조금은 엄숙한 기분이 들지도...<br><br>
+    <span style="color: #737373;">'메모리얼 파크에 입장한다' 버튼 클릭 시 효과음이 재생됩니다.</span></p>
+    <button onclick="goToWithSoundNL('memorial1', 'zzapsea.mp3')">메모리얼 파크에 입장한다</button><br>
+    <button class="nav-button" onclick="goTo('outside')">나가기</button>
+  </div>
+
+      <!-- 메모리얼 파크:1 --> 
+    <div id="memorial1" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]</span><br><br>짧게 깎인 잔디 위로 새하얀 비석이 햇빛을 반사하며 눈길을 끈다.<br>이곳은 세상을 떠난 초세계급을 기리는 메모리얼 파크. 묻힌 사람은 아직 하나뿐이다.<br>규칙적으로 들려오는 파도 소리가 장송곡처럼 잔잔히 흐른다.<br>메모리얼 파크를 가로지르는 길은 꽃이 만발한 <span style="color: #3f40d3;">화원</span>으로 이어진다.</p>
+    <button onclick="goTo('memorial-lorem')">로렘의 묘비</button>
+    <button onclick="goTo('garden')">화원</button><br>
+    <button class="nav-button" onclick="goToWithoutzzapsea('memorial')">나가기</button>
+  </div>
+
+      <!-- !!메모리얼 파크:화원 --> 
+    <div id="garden" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[화원]</span><br><br>오색의 꽃이 화려하게 피어난 화원. 장미 덤불이 시야를 가릴 정도의 높이로 다듬어져 있어 마치 미로를 연상케 한다.<br>한켠에는 <span style="color: #3f40d3;">헌화용 꽃</span>을 자유롭게 가져갈 수 있는 공간이 있다. 하나 골라 보는 것도 좋겠지...<br>화원 안쪽에는 공중전화 박스를 닮은 작은 <span style="color: #3f40d3;">부스</span>가 설치되어 있다.</p>
+    <button id="flowerpick" onclick="goTodel('gardenflower', 'flowerpick')">헌화용 꽃을 고른다</button>
+    <button onclick="goTo('fltest0')">부스</button><br>
+    <button class="nav-button" onclick="goTo('memorial1')">나가기</button>
+  </div>
+
+      <!-- !!메모리얼 파크:부스0 --> 
+    <div id="fltest0" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]<br>[부스]</span><br><br>부스 안쪽으로 들어가 보면, 공중전화를 닮은 전화기가 놓여 있다. 정말 공중전화 박스였던 걸까?<br>하지만 전화기는 무척 구식이고, 숫자 버튼도 눌리지 않는다.<br>전화기 아래에 작게 안내문이 쓰여 있다.<br><br><em>'당신에게 맞는 꽃을 추천해 드립니다. 수화기를 들어 질문에 응답해 주세요.'</em></p>
+    <button id="flt" onclick="goTodel('fltest1', 'flt')">수화기를 든다</button><br>
+    <button class="nav-button" onclick="goTo('garden')">나가기</button>
+  </div>
+
+      <!-- !!메모리얼 파크:부스1 --> 
+    <div id="fltest1" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]<br>[부스]</span><br><br>수화기 저편에서 목소리가 들려온다. 질문에 답하면 되는 것 같은데...<br><br><em>"취향을 모르는 상대에게 선물을 줄 때에는, 내가 받는다면 기쁠 만한 것을 선물하나요?<br>아니면 호불호가 갈리지 않아 누구나 좋아할 만한 것을 선물하나요?"</em></p>
+    <button onclick="goTo('fltest2')">내가 받는다면 기쁠 만한 것</button><br>
+    <button onclick="goTo('fltest3')">호불호 없이 누구나 좋아할 만한 것</button><br>
+  </div>
+
+      <!-- !!메모리얼 파크:부스2 --> 
+    <div id="fltest2" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]<br>[부스]</span><br><br><em>"어떻게 해도 꺾을 수 없는 상대를 만난다면, 좋은 라이벌을 만나 기쁘다는 생각이 드나요?<br>아니면 솔직히 조금은 무력감을 느끼나요?"</em></p>
+    <button onclick="goTo('fltest4')">기쁘다는 생각이 들 것 같다</button><br>
+    <button onclick="goTo('fltest5')">조금은 무력감이 들 것 같다</button><br>
+  </div>
+
+        <!-- !!메모리얼 파크:부스3 --> 
+    <div id="fltest3" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]<br>[부스]</span><br><br><em>"새로 만나는 사람을 상대로는 먼저 자기소개를 하는 편인가요?<br>아니면 상대가 자기소개를 할 때까지 기다리나요?"</em></p>
+    <button onclick="goTo('fltest4')">먼저 자기소개를 한다</button><br>
+    <button onclick="goTo('fltest5')">상대가 자기소개를 할 때까지 기다린다</button><br>
+  </div>
+
+        <!-- !!메모리얼 파크:부스4 --> 
+    <div id="fltest4" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]<br>[부스]</span><br><br><em>"행운이 당신의 편에 있다고 믿나요?"</em></p>
+    <button onclick="goTo('fltest6')">그렇다</button><br>
+    <button onclick="goTo('fltest7')">아니다</button><br>
+  </div>
+  
+        <!-- !!메모리얼 파크:부스5 --> 
+    <div id="fltest5" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]<br>[부스]</span><br><br><em>"이름도, 얼굴도 모르는 상대와 사랑에 빠질 수 있다고 생각하나요?"</em></p>
+    <button onclick="goTo('fltest7')">그렇다</button><br>
+    <button onclick="goTo('fltest8')">아니다</button><br>
+  </div>
+
+        <!-- !!메모리얼 파크:부스6 --> 
+    <div id="fltest6" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]<br>[부스]</span><br><br>목소리가 끊기더니, 전화기 아래쪽에서 종이 한 장이 팔랑 떨어졌다. 꽃이 압화된 엽서 한 장이다.<br><br><em>'열정과 의지를 갖춘 당신에게 어울리는 꽃, 아데니움.<br>꽃말은 '무모한 사랑, 열정'.<br>과감한 결단이 필요할 때 이 꽃이 행운의 증표가 되어 줄 것입니다.'</em><br>...라는 글이 새겨져 있다.</p>
+    <button class="nav-button" onclick="goTo('garden')">나가기</button>
+  </div>
+
+          <!-- !!메모리얼 파크:부스7 --> 
+    <div id="fltest7" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]<br>[부스]</span><br><br>목소리가 끊기더니, 전화기 아래쪽에서 종이 한 장이 팔랑 떨어졌다. 꽃이 압화된 엽서 한 장이다.<br><br><em>'성장의 여지와 잠재력을 품은 당신에게 어울리는 꽃, 능소화.<br>꽃말은 '기다림, 명예, 영광, 그리움'.<br>앞으로 한 발을 내딛고자 할 때 이 꽃이 행운의 증표가 되어 줄 것입니다.'</em><br>...라는 글이 새겨져 있다.</p>
+    <button class="nav-button" onclick="goTo('garden')">나가기</button>
+  </div>
+
+          <!-- !!메모리얼 파크:부스8 --> 
+    <div id="fltest8" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]<br>[부스]</span><br><br>목소리가 끊기더니, 전화기 아래쪽에서 종이 한 장이 팔랑 떨어졌다. 꽃이 압화된 엽서 한 장이다.<br><br><em>'오묘한 매력을 가지고 있는 당신에게 어울리는 꽃, 거베라.<br>꽃말은 '풀 수 없는 수수께끼, 신비'.<br>진정한 자신을 내보이고 싶을 때 이 꽃이 행운의 증표가 되어 줄 것입니다.'</em><br>...라는 글이 새겨져 있다.</p>
+    <button class="nav-button" onclick="goTo('garden')">나가기</button>
+  </div>
+
+          <!-- !!메모리얼 파크:부스9 --> 
+    <div id="fltest9" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]<br>[부스]</span><br><br>목소리가 끊기더니, 전화기 아래쪽에서 종이 한 장이 팔랑 떨어졌다. 꽃이 압화된 엽서 한 장이다.<br><br><em>'신중하고 섬세한 당신에게 어울리는 꽃, 라벤더.<br>꽃말은 '침묵, 행복이 다시 온다'.<br>스스로에게 믿음이 필요할 때 이 꽃이 행운의 증표가 되어 줄 것입니다.'</em><br>...라는 글이 새겨져 있다.</p>
+   <button class="nav-button" onclick="goTo('garden')">나가기</button>
+  </div>
+  
+      <!-- !!메모리얼 파크:화원:꽃 --> 
+    <div id="gardenflower" class="hidden">
+    <p><span style="font-weight: bold;">[화원]</span><br><br>마음에 드는 꽃을 고르자.</p>
+    <button onclick="goTo('flowerobtain')">수국</button><br>
+    <button onclick="goTo('flowerobtain')">장미</button><br>
+    <button onclick="goTo('flowerobtain')">국화</button><br>
+  </div>
+
+      <!-- !!메모리얼 파크:화원:꽃 --> 
+    <div id="flowerobtain" class="hidden">
+    <p><span style="font-weight: bold;">[화원]</span><br><br>정성을 들여 꽃을 골랐다. 이 정도면 괜찮으려나...</p>
+    <button class="nav-button" onclick="goTo('garden')">나가기</button>
+  </div>
+
+      <!-- !!메모리얼 파크:로렘의 묘비 --> 
+    <div id="memorial-lorem" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[로렘의 묘비]</span><br><br>1985.06.09-2025.XX.XX</p>
+    <button id="flowerbtn" onclick="giveflower('flowerbtn')">헌화한다</button><br>
+    <button class="nav-button" onclick="goTo('memorial1')">나가기</button>
+  </div>
+
+      <!-- !!메모리얼 파크:로렘의 묘비:헌화 --> 
+    <div id="flowerpage" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[로렘의 묘비]</span><br><br>묘비 앞에 꽃을 가지런히 올려놓았다. 바람에 꽃잎이 살짝 흔들린다.<br>잠시 눈을 감았다 뜨니... 원래 여기 코인이 놓여 있었던가?<br><span style="font-weight: bold;">1코인을 획득했다.</span></p>
+    <button class="nav-button" onclick="goTo('memorial1')">나가기</button>
+  </div>
+
+      <!-- 산책로 --> 
+    <div id="street" class="hidden">
+    <p><span style="font-weight: bold;">[산책로]</span><br><br>섬 뒤쪽을 돌아볼 수 있는 해안산책로. 왕복 30분 정도 소요된다는 안내가 적혀 있다.<br>산책로 입구에는 <span style="color: #3f40d3;">자전거 대여소</span>와 <span style="color: #3f40d3;">작은 벤치</span>가 보인다.</p>
+    <button onclick="goTo('street1')">걸어서 산책하기</button><br>
+    <button onclick="goTo('street2')">자전거 대여소</button>
+    <button onclick="goTo('bench')">작은 벤치</button><br>
+    <button class="nav-button" onclick="goTo('outside')">나가기</button>
+  </div>
+
+    <div id="street1" class="hidden">
+    <p><span style="font-weight: bold;">[산책로]</span><br><br>천천히 걸어서 산책하기로 했다.</p>
+  <button onclick="goTo('street2-2')">계속 걷는다</button>
+  </div>
+  
+      <!-- 산책로-작은 벤치 --> 
+    <div id="bench" class="hidden">
+    <p><span style="font-weight: bold;">[산책로]<br>[작은 벤치]</span><br><br>바다를 향하는 쪽으로 놓인 벤치. 앉아서 쉬기에 딱 좋은 장소다.<br>
+    수평선 끝까지 푸른색이 뻗어나간다. 시야를 가리는 것은 아무것도 없다.<br>
+    이렇게 육지와 동떨어진 곳에 미래기관의 시설이 위치하고 있을 줄은 아무도 몰랐겠지...</p>
+    <button class="nav-button" onclick="goTo('street')">나가기</button>
+  </div>
+
+      <!-- 산책로2:자전거 대여소 --> 
+    <div id="street2" class="hidden">
+    <p><span style="font-weight: bold;">[산책로]<br>[자전거 대여소]</span><br><br>바닷바람과 속도를 즐기고 싶은 사람들을 위한 자전거 대여소.<br>다양한 종류의 자전거가 마련되어 있다.<br>2인승 자전거, 전기 자전거… 외바퀴자전거까지?<br><br>이용료는 무료지만, 한 사용자당 1일 1회 사용 제한이 있는 모양이다.</p>
+    <button id="bikerental" onclick="goTodel('street2-1', 'bikerental')">자전거를 대여한다</button><br>
+    <button class="nav-button" onclick="goTo('street')">나가기</button>
+  </div>
+
+    <!-- 산책로:2-1 (자전거 대여) --> 
+  <div id="street2-1" class="hidden"> <p><span style="font-weight: bold;">[산책로]<br>[자전거 대여소]</span><br><br>어떤 자전거를 빌릴까?</p> 
+  <button onclick="goTo('street2-1-1')">평범한 자전거</button>
+  <button onclick="goTo('street2-1-1')">전기 자전거</button>
+  <button onclick="goTo('street2-1-2')">외바퀴 자전거</button>
+  </div>
+
+  <!-- 산책로:2-1-1 (일반 자전거) --> 
+  <div id="street2-1-1" class="hidden"> 
+  <p><span style="font-weight: bold;">[산책로]</span><br><br>빌린 자전거를 타고 달리자 딱 기분 좋은 바람이 불어온다. 상쾌한 느낌이다.<br>여기 있는 동안 기분 전환을 하고 싶다면 가끔 이렇게 달려보는 것도 좋겠지…</p>
+  <button onclick="goTo('street2-2')">계속 달린다</button>
+  </div>
+
+  <!-- 산책로:2-1-2 (외바퀴 자전거) --> 
+  <div id="street2-1-2" class="hidden"> 
+  <p><span style="font-weight: bold;">[산책로]</span><br><br>기세 좋게 외바퀴 자전거를 고른 것은 좋았지만... 중심 잡기가 쉽지 않다!<br>몇 번 아슬아슬하게 넘어질 뻔한 뒤에야 익숙해졌다. 이거, 꽤 운동이 될 것 같은데...<br><br>적응하고 나니 뺨에 닿는 바람이 제법 상쾌하게 느껴진다.</p>
+  <button onclick="goTo('street2-2')">계속 달린다</button>
+  </div>
+  
+  <!-- 산책로:2-2 소원의 호수 입구 --> 
+  <div id="street2-2" class="hidden"> 
+  <p><span style="font-weight: bold;">[산책로]</span><br><br>어느새 산책로의 끝이다. 눈앞에 보이는 것은 작은 호수인데… 자세히 보니 <span style="color: #3f40d3;">소원의 호수</span>라고 적힌 팻말이 꽂혀 있다.</p>
+  <button onclick="goTo('street3')">소원의 호수</button><br>
+  <button class="nav-button" onclick="goTo('street')">이만 돌아간다</button>
+  </div>
+
+   <!-- 산책로: 3 소원의 호수 --> 
+  <div id="street3" class="hidden"> 
+  <p><span style="font-weight: bold;">[산책로]<br>[소원의 호수]</span><br><br>'간절히 바라는 마음은 형태를 가지게 된다는 말이 있습니다.<br>원하는 것을 소리내서 말하면, 호수에 걸린 마법이 당신의 소원을 이루어 줄지도...'</p>
+  <button id="makeawish" onclick="goTodel('pond', 'makeawish')">소원을 빈다</button><br>
+  <button class="nav-button" onclick="goTo('street2-2')">나가기</button>
+  </div>
+
+  <!-- 소원 빌기 --> 
+  <div id="pond" class="hidden"> 
+  <p><span style="font-weight: bold;">[산책로]<br>[소원의 호수]</span><br><br>어떤 소원을 빌까?</p>
+  <button onclick="goTo('pond-money')">부자가 되고 싶다</button><br>
+  <button onclick="goTo('pond-friend')">인기인이 되고 싶다</button><br>
+  <button onclick="goTo('pond-nota')">공증인의 마음을 가지고 싶다</button><br>
+  </div>
+
+  <!-- 소원 빌기 --> 
+  <div id="pond-money" class="hidden"> 
+  <p><span style="font-weight: bold;">[산책로]<br>[소원의 호수]</span><br><br>"부자가 되고 싶다!"<br>소원을 빌었다...<br><br>어라? 아무것도 없던 하늘에서 갑자기 코인 두 개가 떨어졌다.<br>이 호수, 정말 효험이 있는 걸까...?<br><br><span style="font-weight: bold;">2코인을 획득했다.</span></p>
+  <button class="nav-button" onclick="goTo('street3')">나가기</button>
+  </div>
+
+  <div id="pond-friend" class="hidden"> 
+  <p><span style="font-weight: bold;">[산책로]<br>[소원의 호수]</span><br><br>"인기인이 되고 싶다!"<br>소원을 빌었다...<br><br>어라? 아무것도 없던 하늘에서 갑자기 종이 한 장이 떨어졌다. ...'소원권'?<br><br><span style="font-weight: bold;"> ‘소원권’ 을 획득했다. 선물할 시 상대의 호감도 +2. </span></p>
+  <button class="nav-button" onclick="goTo('street3')">나가기</button>
+  </div>
+
+  <!-- 공증인 공략 -->
+  <div id="pond-nota" class="hidden"> 
+  <p><span style="font-weight: bold;">[산책로]<br>[소원의 호수]</span><br><br>"공증인의 마음을 가지고 싶다!"<br>소원을 빌었다...<br><br><em>"... ... 다른 소원은 없으신지요?"</em><br><br>당황한 기색이 역력한 공증인의 목소리가 들려온다. 듣고 있었던 건가...?</p>
+  <button class="nav-button" onclick="goTo('pond1')">다시 소원 빌기</button>
+  </div>
+  
+  <div id="pond1" class="hidden"> 
+  <p><span style="font-weight: bold;">[산책로]<br>[소원의 호수]</span><br><br>어떤 소원을 빌까?</p>
+  <button onclick="goTo('pond-money')">부자가 되고 싶다</button><br>
+  <button onclick="goTo('pond-friend')">인기인이 되고 싶다</button><br>
+  <button onclick="goTo('pond-nota1')">공증인의 마음을 가지고 싶다!!!</button><br>
+  </div>
+
+  <div id="pond-nota1" class="hidden"> 
+  <p><span style="font-weight: bold;">[산책로]<br>[소원의 호수]</span><br><br>"공증인의 마음을 가지고 싶다!!!"<br>다시 한 번 소원을 빌었다...<br><br><em>"호의는 감사하지만, 저는 어디까지나 공증인 역할을 하는 AI이기 때문에..."</em><br><br>공증인은 곤란한 듯하다.</p>
+  <button class="nav-button" onclick="goTo('pond2')">다시 소원 빌기</button>
+  </div>
+
+  <div id="pond2" class="hidden"> 
+  <p><span style="font-weight: bold;">[산책로]<br>[소원의 호수]</span><br><br>어떤 소원을 빌까?</p>
+  <button onclick="goTo('pond-money')">부자가 되고 싶다</button><br>
+  <button onclick="goTo('pond-friend')">인기인이 되고 싶다</button><br>
+  <button onclick="goTo('pond-nota2')">공증인의 마음을 가지고 싶다!!!!!!!!!!</button><br>
+  </div>
+
+  <div id="pond-nota2" class="hidden"> 
+  <p><span style="font-weight: bold;">[산책로]<br>[소원의 호수]</span><br><br>"공증인의 마음을 가지고 싶다!!!!!!!!!!"<br>끈질기게 소원을 빌었다...<br><br><em>"마음은 기쁘지만, 그건 들어 드릴 수 없는 소원이라서... 대신 이거라도..."</em><br><br>공증인의 헛기침 소리와 함께 허공에서 코인 2개가 떨어졌다.<br><br><span style="font-weight: bold;">2코인을 획득했다.</span></p>
+  <button class="nav-button" onclick="goTo('street3')">나가기</button>
+  </div>
+    
+<!-- !!!!여기서부터 스크립트!!!! -->
+  <script>
+  // 애니메이션이 끝난 뒤 hover 작동 허용
+  document.querySelectorAll('.menu-button').forEach(button => {
+    button.addEventListener('animationend', () => {
+      button.style.pointerEvents = 'auto';
+    });
+  });
+//★★★★★[중요]유저 데이터★★★★★
+    const userData = {
+      mung0515: {
+        class: "피자마스터 으믕",
+        id: "ThePizzaMaster",
+        STR: 6,
+        INT: 6,
+        OBS: 6,
+        POW: 6,
+        LUC: 6,
+        key: 0,
+        coin: 0
+      },
+      sese0409: {
+        class: "감자마스터 세세",
+        id: "Linguistics",
+        STR: 1,
+        INT: 1,
+        OBS: 1,
+        POW: 1,
+        LUC: 1,
+        key: 0,
+        coin: 0
+      },
+        erne0409: {
+        class: "재해과학자 에르네스토 프로켈",
+        id: "NoClassToday",
+        STR: 3,
+        INT: 3,
+        OBS: 3,
+        POW: 3,
+        LUC: 3,
+        key: 0,
+        coin: 0
+      },
+        liva3561: {
+        class: "??? ?",
+        id: "Untitled",
+        STR: 3,
+        INT: 3,
+        OBS: 3,
+        POW: 3,
+        LUC: 3,
+        key: 0,
+        coin: 0}
+      ,
+              taei0515: {
+        class: "퇴마사 태이",
+        id: "Taei",
+        STR: 5,
+        INT: 1,
+        OBS: 1,
+        POW: 3,
+        LUC: 5,
+        key: 0,
+        coin: 0}
+      ,
+        pola2469: {
+        class: "프론트맨 폴라리스 래피드",
+        id: "polaris",
+        STR: 5,
+        INT: 4,
+        OBS: 4,
+        POW: 1,
+        LUC: 5,
+        key: 0,
+        coin: 0}
+      ,
+        siny1538: {
+        class: "약사 요시다 신",
+        id: "SIN",
+        STR: 2,
+        INT: 5,
+        OBS: 3,
+        POW: 4,
+        LUC: 2,
+        key: 0,
+        coin: 0}
+      ,
+        edit9947: {
+        class: "과학수사관 에디트 발랑틴",
+        id: "edit",
+        STR: 4,
+        INT: 4,
+        OBS: 4,
+        POW: 4,
+        LUC: 4,
+        key: 0,
+        coin: 0}
+      ,
+        maur3085: {
+        class: "소매치기 모리스 레비",
+        id: "Levi",
+        STR: 3,
+        INT: 2,
+        OBS: 4,
+        POW: 2,
+        LUC: 4,
+        key: 0,
+        coin: 0}
+      ,
+        jaha4287: {
+        class: "스포츠 트레이너 원자한",
+        id: "Jahan",
+        STR: 4,
+        INT: 4,
+        OBS: 6,
+        POW: 3,
+        LUC: 2,
+        key: 0,
+        coin: 0}
+      ,
+        wied6391: {
+        class: "필체감정사 비더 바이나흐텐",
+        id: "WEIHNACHT",
+        STR: 1,
+        INT: 4,
+        OBS: 6,
+        POW: 1,
+        LUC: 2,
+        key: 0,
+        coin: 0}
+      ,
+        isad2597: {
+        class: "행정가 이사도르 도슨",
+        id: "FT06_dawson",
+        STR: 3,
+        INT: 4,
+        OBS: 5,
+        POW: 6,
+        LUC: 3,
+        key: 0,
+        coin: 0}
+      ,
+        zede0753: {
+        class: "생존전문가 제더카이어 어비스",
+        id: "AtoZ",
+        STR: 5,
+        INT: 3,
+        OBS: 5,
+        POW: 5,
+        LUC: 3,
+        key: 0,
+        coin: 0}
+      ,
+        akir2740: {
+        class: "화가 에이즈카 아키라",
+        id: "akila",
+        STR: 1,
+        INT: 5,
+        OBS: 5,
+        POW: 5,
+        LUC: 4,
+        key: 0,
+        coin: 0},
+              rust8164: {
+        class: "우체부 루스티카 테일윈드",
+        id: "RUSTIC4",
+        STR: 4,
+        INT: 1,
+        OBS: 4,
+        POW: 3,
+        LUC: 5,
+        key: 0,
+        coin: 0},
+              seto2566: {
+        class: "피아니스트 세토 아이비",
+        id: "IVY",
+        STR: 3,
+        INT: 4,
+        OBS: 5,
+        POW: 3,
+        LUC: 2,
+        key: 0,
+        coin: 0},
+              kuki4917: {
+        class: "해커 쿠루미 J. 쿠로키",
+        id: "MACHO_KUKI",
+        STR: 3,
+        INT: 5,
+        OBS: 4,
+        POW: 3,
+        LUC: 1,
+        key: 0,
+        coin: 0},
+              nuri2925: {
+        class: "체스마스터 하누리",
+        id: "nuriNOW",
+        STR: 1,
+        INT: 4,
+        OBS: 3,
+        POW: 5,
+        LUC: 4,
+        key: 0,
+        coin: 0},
+              rose1928: {
+        class: "수영선수 미아 콜린스",
+        id: "RosePinkDolphin",
+        STR: 4,
+        INT: 2,
+        OBS: 5,
+        POW: 4,
+        LUC: 3,
+        key: 0,
+        coin: 0},
+              ivan2992: {
+        class: "수의사 이반 카르포프",
+        id: "ivan",
+        STR: 4,
+        INT: 5,
+        OBS: 5,
+        POW: 3,
+        LUC: 2,
+        key: 0,
+        coin: 0},
+              bury5792: {
+        class: "고고학자 베리",
+        id: "Berry",
+        STR: 5,
+        INT: 5,
+        OBS: 5,
+        POW: 5,
+        LUC: 5,
+        key: 0,
+        coin: 0},
+                 fome0838: {
+        class: "탐험가 포멜하우트 에빌라",
+        id: "Explorer",
+        STR: 5,
+        INT: 3,
+        OBS: 3,
+        POW: 5,
+        LUC: 2,
+        key: 0,
+        coin: 0} 
+    };
+
+    let currentUser = null;
+    let pageHistory = [];
+    const outputIds = ['gym-result', 'library-result'];
+    
+//★★★★★로그인★★★★★
+    function checkLogin() {
+      const id = document.getElementById('id-input').value;
+      if (userData[id]) {
+        currentUser = userData[id];
+        showWelcomeMessage(currentUser.class);
+      } else {
+        document.getElementById('login-error').innerText = "아이디가 일치하지 않습니다.";
+      }
+    }
+  
+//★★★★★환영 메시지★★★★★
+    function showWelcomeMessage(userClass) {
+      document.getElementById('login-page').classList.add('hidden');
+      const container = document.createElement('div');
+      container.classList.add('typewriter');
+      container.innerHTML = `초세계급 ${userClass} 님을 환영합니다. . .`;
+      document.body.appendChild(container);
+      setTimeout(() => {
+        container.remove();
+        showUserInfo();
+        document.getElementById('main-page').classList.remove('hidden');
+        pageHistory.push('main-page');
+      }, 3600);
+    }
+//★★★★★유저 인포메이션 창★★★★★
+    function showUserInfo() {
+      const userBox = document.getElementById('user-display');
+      document.getElementById('user-class-line').innerHTML = `User ID: ${currentUser.id}`;
+      document.getElementById('coin-line').innerText = `Coin: ${currentUser.coin || 0}`;
+      userBox.classList.remove('hidden');
+    }
+    function updateCoinDisplay() {
+      document.getElementById('coin-line').innerText = `Coin: ${currentUser.coin || 0}`;
+    }
+//★★★★★출력된 텍스트 아웃풋 창 넘어갈 때 지우기 (goTo 연동용)★★★★★
+    function clearOutputs() {
+      outputIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = '';
+      });
+    }
+
+//★★★★★goTo★★★★★
+function goTo(page) {
+  // 창 이동시 숨겨지지 않는 디스플레이 설정
+  const exceptions = ['user-display','persistent-nav','bgm-player','bgm-player button'];  
+  document.querySelectorAll('div').forEach(div => {
+    const isException = exceptions.includes(div.id) || div.closest('#user-display') || div.closest('#persistent-nav');
+    if (!isException) {
+      div.classList.add('hidden');
+    }
+  });
+  //지우고 페이드 인
+  const target = document.getElementById(page);
+  target.classList.remove('hidden');
+  target.classList.add('fade-in');
+  clearOutputs();
+  pageHistory.push(page);
+  //[중요]특정 페이지 진입 시 스탯(코인 등)변동
+  if (['notary3-2','flowerpage','sofa1-1','sofa1-3','feed2'].includes(page)) {
+    currentUser.coin = (currentUser.coin || 0) + 1;
+    updateCoinDisplay();
+  }
+  if (['notary5','pond-money','pond-nota2'].includes(page)) {
+    currentUser.coin = (currentUser.coin || 0) + 2;
+    updateCoinDisplay();
+  }
+  if (['flowerobtain'].includes(page)) {
+    currentUser.key = 1;
+    updateCoinDisplay();
+  }
+    if (['street2-1-2'].includes(page)) {
+    currentUser.unicycle = true;
+    updateCoinDisplay();
+  }
+    if (['pond-nota2'].includes(page)) {
+    currentUser.notalove = true;
+    updateCoinDisplay();
+  }
+      if (['pond-friend'].includes(page)) {
+    currentUser.wishticket = true;
+    updateCoinDisplay();
+  }
+        if (['drawer1'].includes(page)) {
+    currentUser.bread = 1;
+    updateCoinDisplay();
+  }
+          if (['fltest6'].includes(page)) {
+    currentUser.post = "아데니움이";
+    updateCoinDisplay();
+  }
+          if (['fltest7'].includes(page)) {
+    currentUser.post = "능소화가";
+    updateCoinDisplay();
+  }
+          if (['fltest8'].includes(page)) {
+    currentUser.post = "거베라가";
+    updateCoinDisplay();
+  }
+          if (['fltest9'].includes(page)) {
+    currentUser.post = "라벤더가";
+    updateCoinDisplay();
+  }
+    if (page === 'starting-point') {
+    document.getElementById('persistent-nav').style.display = 'flex';
+  }
+  //얘네는 버튼 없애기용인데 이렇게 하지 말고 goTodel 사용을 고려할 것 ...
+  const flowerButton = document.getElementById('flower-button-box');
+if (flowerButton) {
+  // 한 번이라도 헌화한 경우에는 다시 보이지 않음
+  flowerButton.style.display = (page === 'flowerpage') ? 'none' : 'block';
+}
+  const codebox = document.getElementById('codebox');
+if (page === 'notary4' && codebox) {
+  const alreadyUsed = codebox.getAttribute('data-used') === 'true';
+  codebox.style.display = alreadyUsed ? 'none' : 'block';
+}
+  document.getElementById('user-display').classList.remove('hidden');
+}
+
+//★★★★★goTodel(이동과 동시에 버튼 삭제)★★★★★   
+function goTodel(targetPage, buttonId) {
+  const btn = document.getElementById(buttonId);
+  if (btn) btn.remove(); // 한 번만 지움
+  goTo(targetPage); // 기존 페이지 이동 로직 재사용
+}
+
+//★★★★★goToWithSound(페이지 이동 버튼 누를 때 효과음(일시) 재생)★★★★★   
+  function goToWithSound(page, soundFile) {
+      const audio = new Audio(soundFile);
+      audio.loop = false;
+      audio.volume = 0.3;
+      audio.play();
+      goTo(page);
+    }
+
+//★★★★★goToWithSound(페이지 이동 버튼 누를 때 효과음 계속해서 재생, 루프)★★★★★  
+let zzapseaAudio = null;
+let zzapportAudio = null;
+
+function goToWithSoundNL(page, soundFile) {
+  if (soundFile.includes('zzapsea.mp3')) {
+    zzapseaAudio = new Audio(soundFile);
+    zzapseaAudio.loop = true;
+    zzapseaAudio.play();
+  } else if (soundFile.includes('zzapport.mp3')) {
+    zzapportAudio = new Audio(soundFile);
+    zzapportAudio.loop = true;
+    zzapportAudio.play();
+  } else {
+    const audio = new Audio(soundFile);
+    audio.loop = true;
+    audio.play();
+  }
+  goTo(page);
+}
+
+//★★★★★해당 버튼을 누를 시, 페이지 이동과 동시에 zzapseaAudio 중지★★★★★
+function goToWithoutzzapsea(page) {
+  if (zzapseaAudio && !zzapseaAudio.paused) {
+    zzapseaAudio.pause();
+    zzapseaAudio.currentTime = 0;
+  }
+  if (zzapportAudio && !zzapportAudio.paused) {
+    zzapportAudio.pause();
+    zzapportAudio.currentTime = 0;
+  }
+  goTo(page);
+}
+
+//★★★★★goBack★★★★★  
+function goBack() {
+  if (pageHistory.length > 1) {
+    // 현재 페이지 제거
+    pageHistory.pop();
+    const prevPage = pageHistory[pageHistory.length - 1];
+
+    // 예외 요소들 (루트 + 내부 포함 전부 보호)
+    const persistentRoots = ['user-display', 'bgm-player', 'persistent-nav'];
+
+    // 모든 div를 숨기되, 예외 요소 또는 그 자식은 숨기지 않음
+    document.querySelectorAll('div').forEach(div => {
+      const isPersistent = persistentRoots.some(rootId => {
+        const rootEl = document.getElementById(rootId);
+        return rootEl && (div === rootEl || rootEl.contains(div));
+      });
+      if (!isPersistent) {
+        div.classList.add('hidden');
+      }
+    });
+
+    // 이전 페이지 보여주기
+    const target = document.getElementById(prevPage);
+    if (target) {
+      target.classList.remove('hidden');
+      target.classList.add('fade-in');
+    }
+
+    // 텍스트 강제 갱신 (혹시라도 브라우저 캐시가 날려버린 경우)
+    if (currentUser) {
+      const idLine = document.getElementById('user-class-line');
+      const coinLine = document.getElementById('coin-line');
+      if (idLine) idLine.innerText = `User ID: ${currentUser.id}`;
+      if (coinLine) coinLine.innerText = `Coin: ${currentUser.coin || 0}`;
+    }
+
+    // 출력 영역 초기화
+    clearOutputs();
+  }
+}
+
+
+
+
+//여기서부터 특정 장소에서 사용하도록 되어 있는 함수!!!!
+//★★★★★헌화★★★★★
+function giveflower(buttonId) {
+  if (currentUser.key === 1) {
+    // 버튼 제거
+    const btn = document.getElementById(buttonId);
+    if (btn) btn.remove();  // 단 한 번만 제거
+    goTo('flowerpage');
+  } else {
+    alert("꽃을 가지고 있지 않다. 어디서 구할 수 있을까...");
+  }
+}
+//★★★★★냉장고★★★★★
+function openfridge(buttonId) {
+  if (currentUser.STR >= 4) {
+    goTo('fridge1');
+  } else {
+    const result = document.getElementById('fridge-result');
+    result.innerText = "열심히 문을 당겨 봤지만... 꿈쩍도 하지 않는다. 힘이 부족해...!";
+  }
+}
+//★★★★★토스트★★★★★
+function maketoast(buttonId) {
+  if (currentUser.bread === 1) {
+    // 버튼 제거
+    const btn = document.getElementById(buttonId);
+    if (btn) btn.remove();  // 단 한 번만 제거
+    goTo('toaster');
+  } else {
+    alert("식빵을 가지고 있지 않다. 어디 있으려나?");
+  }
+}
+//★★★★★토스트 굽기★★★★★
+function toasttime(buttonId) {
+  if (currentUser.LUC <= 2) {
+    goTo('overcook');
+  } else if (currentUser.LUC >= 4) {
+    goTo('perfect');
+  } else {
+    goTo('undercook');
+  }
+}
+//★★★★★갈매기 밥★★★★★
+function feedgalmaegi(buttonId) {
+  if (currentUser.POW <= 2) {
+    goTo('feed1');
+  } else if (currentUser.POW >= 4) {
+    goTo('feed2');
+  } else {
+    goTo('feed3');
+  }
+}
+//★★★★★탐조★★★★★
+function watchbird(buttonId) {
+  if (currentUser.OBS <= 2) {
+    goTo('sand2');
+  } else if (currentUser.OBS >= 4) {
+    goTo('sand3');
+  } else {
+    goTo('sand4');
+  }
+}
+//★★★★★퀴즈★★★★★
+function checkSecretCode() {
+  const input = document.getElementById('secret-code-input').value;
+  if (input === "19850609") { // 원하는 정답
+    const codebox = document.getElementById('codebox');
+    if (codebox) {
+      codebox.style.display = 'none';
+      codebox.setAttribute('data-used', 'true');  // ✅ 한 번 사용했음을 표시
+    }
+    goTo('notary5');
+  } else {
+    const result = document.getElementById('secret-code-result');
+    result.innerText = "공증인은 침묵하고 있다... 아무래도 이게 정답이 아닌 것 같다.";
+  }
+}    
+
+
+//★★★★★음료 디스펜서★★★★★
+// 음료 효과음 공통
+let drinkAudio = new Audio("zzapdrink.mp3");
+function playDrinkSound() {
+  drinkAudio.pause();
+  drinkAudio.currentTime = 0;
+  drinkAudio.play();
+}
+// 일반 음료 선택 함수
+function selectDrink(type) {
+  const messages = {
+    coffee: { title: "커피", desc: "원두의 고소한 향을 살린 커피. 은은하게 남는 잔향이 매력적이다." },
+    "green-tea": { title: "녹차", desc: "시원하게 얼음을 띄운 녹차." },
+    "orange-juice": { title: "오렌지 주스", desc: "상큼한 오렌지 주스. 더위를 싹 날려 주는 맛이다." }
+  };
+  const msg = messages[type];
+  const resultBox = document.getElementById("drink-result");
+  resultBox.innerHTML = `<p><span style="font-weight: bold;">[${msg.title}]</span><br><br>${msg.desc}</p>`;
+  // 애니메이션 적용
+  resultBox.style.animation = "none";
+  void resultBox.offsetWidth;
+  resultBox.style.animation = "pop 0.6s ease-out";
+  playDrinkSound();
+}
+//랜덤 음료
+let randomClickCount = 0;
+const randomLimit = 3;
+function selectRandomDrink() {
+  if (randomClickCount >= randomLimit) {
+    document.getElementById("drink-result").innerText = "오늘의 사용 횟수를 초과한 모양이다.";
+    return;
+  }
+  const messages = [
+    { title: "녹샷추", desc: "아이스 녹차라떼에 에스프레소 샷을 추가했다. 커피의 풍미가 녹차 특유의 향을 극대화시키며 부드러운 우유와 어우러진다. 조금의 커스터마이징으로 대중적인 음료를 특별하게!" },
+    { title: "땡모반", desc: "태국의 음료수를 대표하는 달콤한 수박 주스. 이 수박은 누가 갈아 준 걸까?" },
+    { title: "망고 라씨", desc: "인도 전통 요거트 음료인 라씨에 달달한 망고 향을 추가. 새콤달콤한 맛이 일품!" },
+    { title: "떡볶이 국물", desc: "설탕을 넉넉히 넣어 달달한 떡볶이 국물. 고추장의 향과 더불어 희미하게 느껴지는 다시마 국물 맛까지 완벽 구현." },
+    { title: "팥죽", desc: "달콤한 팥죽. 한 잔이면 귀신이 무섭지 않다!" },
+    { title: "모히또 에이드", desc: "모히또에서 몰디브 한 잔!" },
+    { title: "페가수스 프라페", desc: "엄청난 양의 무지개 색 휘핑크림이 올라가 있다. 다 마시면 급격한 졸음이 찾아올 것 같다." },
+    { title: "쌍화차", desc: "'아무거나 괜찮아'의 '아무거나' 담당." },
+    { title: "찬물", desc: "분노로 흐려진 머리를 식히거나 남의 머리를 식혀 줄 때 유용하다." },
+    { title: "순도 100% 꿀", desc: "달다...... 손에 묻지 않도록 조심!" },
+    { title: "마늘즙", desc: "몸에 좋다. 코를 뻥 뚫어 주는 편리한 음료. 겸사겸사 뱀파이어 차단도." },
+    { title: "제로 콜라", desc: "그냥 콜라는 없다." },
+    { title: "논알콜 캔맥주", desc: "분위기에 취한다…" },
+    { title: "에너지 음료", desc: "강렬한 탄산과 강렬한 카페인. 밤샘 작업의 필수품. 과음은 금물." },
+    { title: "바나나 우유", desc: "귀여운 연노란색 병이 나왔다. 마시면 귀여워질 것 같다." },
+    { title: "이온음료", desc: "과다섭취나 약과 함께 복용하는 것은 금물." },
+    { title: "캔커피", desc: "마일드한 취향에 딱." },
+    { title: "포도맛 슬러쉬", desc: "추억의 맛이 난다." },
+    { title: "따뜻한 물", desc: "목을 보호한다." },
+    { title: "두유", desc: "락토프리. 그대로 마셔도 좋고 두유 라떼로 만드는 것도 좋다." },
+    { title: "식혜", desc: "한국의 전통 음료. 쌀알이 씹힌다." },
+    { title: "블루베리 스무디", desc: "부드럽고 상큼한 맛. 시력에 좋다고 한다." },
+    { title: "도라지차", desc: "건강에 좋아 보이는 색이다. 쓴맛을 이겨낸 자 건강을 얻으리." },
+    { title: "밀크티", desc: "쌉싸름한 얼그레이 맛." },
+    { title: "국간장", desc: "요리에 넣으면 좋다." },
+    { title: "콘포타쥬", desc: "마음을 따뜻하게 해 주는 맛. 옥수수 알갱이가 씹힌다." },
+    { title: "메론 소다", desc: "크림 위에 깜찍한 체리가 올라가 있다." },
+    { title: "버블티", desc: "밥 대신 먹을 수도 있다. 당도 70%, 얼음 적게로 커스터마이징되어 있다." },
+    { title: "사이다 치약맛 에디션", desc: "입 안까지 청결해지고 싶은 당신에게 강력 추천." },
+    { title: "야쿠르트", desc: "국민 유산균 발효 음료수. 목욕 뒤에 마시기에 딱!" },
+    { title: "대파 스무디", desc: "도발적인 건강함." },
+    { title: "후추 라떼", desc: "시원하게 재채기를 하고 싶은 당신을 위해." },
+    { title: "핫소스", desc: "삶이 지루할 때는 핫소스 한 모금으로 살벌한 짜릿함을 즐기자. 또는 삶이 지루해 보이는 사람에게 권하거나..." },
+    { title: "복숭아 맛 탄산음료", desc: "투명한 무색의 탄산음료에서 은은한 복숭아 향이 올라온다." }
+  ];
+  const randomIndex = Math.floor(Math.random() * messages.length);
+  const msg = messages[randomIndex];
+  const resultBox = document.getElementById("drink-result");
+  resultBox.innerHTML = `<p><span style="font-weight: bold;">[${msg.title}]</span><br><br>${msg.desc}</p>`;
+  // 애니메이션 재적용
+  resultBox.style.animation = "none";
+  void resultBox.offsetWidth;
+  resultBox.style.animation = "pop 0.6s ease-out";
+  playDrinkSound();
+  // 클릭 횟수 증가
+  randomClickCount++;
+  if (randomClickCount >= randomLimit) {
+    document.getElementById("random-button").disabled = true;
+    document.getElementById("random-button").innerText = "사용 불가";
+  }
+}
+
+//랜덤음료공모전
+function addgongmo() {
+  const input = document.getElementById('gongmo').value.trim();
+  // currentUser.gongmo가 없다면 초기화
+  if (!currentUser.gongmo) {
+    currentUser.gongmo = [];
+  }
+  // 2번 이상 제출 시 제한
+  if (currentUser.gongmo.length >= 2) {
+    alert("이미 공모전에 음료를 제출했습니다!");
+    return;
+  }
+  if (input === "") {
+    alert("음료 이름을 입력해 주세요.");
+    return;
+  }
+  // 제출 처리
+  currentUser.gongmo.push(input);
+  document.getElementById('gongmo-result').innerText = "공모전에 음료를 제출했습니다.";
+  document.getElementById('gongmo').value = "";
+}
+
+  </script>
+<script src="final-report.js"></script>
+</body>
+</html>
