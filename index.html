@@ -285,15 +285,15 @@
   <p><span style="font-weight: bold; color: #202e70;">조사 가이드</span><br><br><br>
     웹에서는 클릭, 모바일에서는 터치로 진행합니다. 자유롭게 종료하고 재실행하셔도 좋지만, 창을 닫거나 뒤로가기/새로고침할 시 진행 경과가 초기화되니 주의해 주세요.<br>
     본 조사는 별도의 서버를 사용하지 않기 때문에 세션을 종료하면 결과가 저장되지 않습니다.<br><br>
-    메인 화면에서 '조사 종료→조사 마치기' 를 클릭하면 획득 코인을 알려 주는 화면이 표시됩니다. 최종 화면을 표시한 후에는 이전으로 돌아갈 수 없습니다.<br>
-    최종 화면을 스크린 캡처하여 총괄계 DM으로 보내 주시면 조사 완료 처리됩니다.</p>
+    메인 화면에서 '조사 종료→조사 마치기' 를 클릭하면 획득한 증거를 정리해 주는 화면이 표시됩니다. 최종 화면을 표시한 후에는 이전으로 돌아갈 수 없습니다.<br>
+    최종 화면은 별도의 제출을 필요로 하지 않습니다. 스크린샷 등을 통해 각자 보관해 주세요.</p>
     <br>
     <button class="nav-button" onclick="goBack()">나가기</button>
 </div>
 
   <!-- 레포트 주의사항 -->
   <div id="report" class="hidden">
-    <p>모든 조사를 마치고 최종 리포트를 작성합니다. 진행할 시 이전 단계로 되돌아갈 수 없습니다.<br>조사를 마칠까요?</p>
+    <p>모든 조사를 마치고 최종 리포트를 작성하여 획득한 증거를 정리합니다. 진행할 시 이전 단계로 되돌아갈 수 없습니다.<br>조사를 마칠까요?</p>
     <button onclick="loadFinalReport()">조사를 마친다</button><br>
     <button class="nav-button" onclick="goBack()">취소</button>
   </div>
@@ -310,14 +310,14 @@
   
   <!-- 스타팅 포인트 -->  
   <div id="starting-point" class="hidden">
-    <p><span style="font-weight: bold;">[건물 입구]</span><br><br>흰 관을 연상시키는 건물. 그 입구에 다다른다.<br>돌로 된 정문 표면에는 알 수 없는 문자가 빼곡히 음각으로 새겨져 있다. 무엇을 기록한 것인지는 알 수 없지만 이유 모를 깊이와 장엄함이 느껴진다.<br>이 입구를 기점 삼아 건물 안으로 들어가거나, 섬의 시설물을 둘러보고 돌아올 수 있을 것 같다.</p>
+    <p><span style="font-weight: bold;">[건물 입구]</span><br><br>흰 관을 연상시키는 건물. 그 입구에 다다른다.<br>돌로 된 정문 표면에는 알 수 없는 문자가 빼곡히 음각으로 새겨져 있다. 무엇을 기록한 것인지는 알 수 없으나, 음산하고 기분 나쁜 분위기가 풍긴다.<br>이 입구를 기점 삼아 건물 안으로 들어가거나, 섬의 시설물을 둘러보고 돌아올 수 있을 것 같다.</p>
     <button onclick="goTo('inside')">건물 안으로 들어간다</button>
     <button onclick="goTo('outside')">건물 밖으로 나간다</button>
   </div>
 
   <!-- 내부 1층 --> 
   <div id="inside" class="hidden">
-    <p><span style="font-weight: bold;">[건물 1층]</span><br><br>대리석 바닥이 반짝거리는 건물 1층.<br>정면에 방문객을 맞이하는 <span style="color: #202e70;">로비</span>가 보이고, 로비 뒤편에는 뒤편에는 유리로 된 <span style="color: #202e70;">엘리베이터</span>가 배치되어 있어 시선이 저절로 천장을 향한다.<br>더 안쪽에 있는 복도는 <span style="color: #202e70;">레스토랑</span>으로 이어지는 듯하다.</p>
+    <p><span style="font-weight: bold;">[건물 1층]</span><br><br>건물 1층.<br>정면에 방문객을 맞이하는 <span style="color: #202e70;">로비</span>가 보이고, 로비 뒤편에는 뒤편에는 유리로 된 <span style="color: #202e70;">엘리베이터</span>가 배치되어 있다.<br>더 안쪽에 있는 복도는 <span style="color: #202e70;">레스토랑</span>으로 이어지는 듯하다.</p>
     <button onclick="goTo('lobby')">로비</button>
     <button onclick="goTo('elevator')">엘리베이터</button>
     <button onclick="goTo('restaurant')">레스토랑</button><br>
@@ -326,7 +326,7 @@
 
     <!-- 로비 --> 
     <div id="lobby" class="hidden">
-    <p><span style="font-weight: bold;">[로비]</span><br><br>건물에 들어오면 가장 먼저 보게 되는 곳.<br>우아한 석조 <span style="color: #202e70;">카운터</span>를 중심으로 내빈을 위한 <span style="color: #202e70;">라운지</span>가 마련되어 있다.</p>
+    <p><span style="font-weight: bold;">[로비]</span><br><br>건물에 들어오면 가장 먼저 보게 되는 곳.<br>무채색의 석조 <span style="color: #202e70;">카운터</span>를 중심으로 내빈을 위한 <span style="color: #202e70;">라운지</span>가 마련되어 있다.</p>
     <button onclick="goTo('counter')">카운터</button>
     <button onclick="goTo('waitingspace')">라운지</button><br>
     <button class="nav-button" onclick="goTo('inside')">나가기</button>
@@ -334,293 +334,53 @@
 
     <!-- 로비:카운터 --> 
     <div id="counter" class="hidden">
-    <p><span style="font-weight: bold;">[로비]<br>[카운터]</span><br><br>보통이라면 직원이 서 있어야 할 카운터 너머에는 아무도 없다. 가까이 다가가자 공증인의 목소리가 울린다.<br><br><em>"섬 내부는 잘 돌아보고 계신가요?"</em><br><br><em>"꼼꼼히 둘러봐 주신 분들을 위해 작은 퀴즈를 준비했습니다. 기분이 내키신다면 말을 걸어 주세요. 잠시 쉬어가고 싶으실 때는 잡담을 주고받는 것도 좋겠죠."</em></p>
-    <button onclick="goTo('notary')">공증인과 대화하기</button><br>
+    <p><span style="font-weight: bold;">[로비]<br>[카운터]</span><br><br>보통이라면 직원이 서 있어야 할 카운터 너머에는 아무도 없다.<br>조명이 몇 개 꺼져 어둑하고, 공증인의 목소리조차 들리지 않는다.<br>혼자만의 힘으로 조사해 보라는 뜻일까...</p>
     <button class="nav-button" onclick="goTo('lobby')">나가기</button>
  </div>
-    <!-- 로비:카운터:notary --> 
-    <div id="notary" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br>스피커를 통해 흘러나오는 목소리는 정중하고 부드럽다.<br><em>"어떤 일을 도와드릴까요?"</em></p>
-    <button id="nota1" onclick="goTodel('notary1', 'nota1')">이 섬에 대해서</button><br>
-    <button id="nota2" onclick="goTodel('notary2', 'nota2')">초세계급 기록자 로렘에 대해서</button><br>
-    <button id="nota3" onclick="goTodel('notary3', 'nota3')">공증인에 대해서</button><br>
-    <button onclick="goTo('notary4')">퀴즈를 푼다</button><br>
-    <button class="nav-button" onclick="goTo('counter')">대화를 끝낸다</button>
- </div>
-    <!-- 로비:카운터:notary1 --> 
-    <div id="notary1" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br><em>"이 섬은 미래기관에서 초세계급 여러분을 위해 준비한 시설입니다. <br>본래대로라면 올해 안에 외부에 정식 공개될 예정이었지만… 로렘 님의 추도식을 위해 공개를 앞당기게 되었습니다. 그러다 보니 아직 마땅한 이름조차 없는 장소가 되었지만요.<br>여러분이 계신 동안 섬 이름 공모전이라도 하는 것이 좋을까요? 하하…"</em></p>
-    <button class="nav-button" onclick="goTo('notary')">다른 이야기</button>
- </div>
-    <!-- 로비:카운터:notary2 --> 
-    <div id="notary2" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br><em>"아시다시피 로렘 님께서는 그 누구보다도 미래기관을 위하는 분이셨습니다.<br>이렇게 초세계급 여러분을 불러모으신 것도 본인을 위해서라기보다는 미래기관, 그리고 인류의 희망을 위해서가 아닐까요."</em></p>
-    <button class="nav-button" onclick="goTo('notary')">다른 이야기</button>
- </div>
-    <!-- 로비:카운터:notary3 --> 
-    <div id="notary3" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br><em>"저는 로렘 님의 유언을 절차대로 집행하기 위해 만들어진 공증인 AI입니다. <br>이곳에 머무르시는 여러분의 편의를 위해 안내와 통번역을 포함한 다양한 역할도 함께 수행하고 있습니다. <br>섬 어디서든 말을 걸어 주시면 응답하겠습니다."</em></p>
-    <button id="nota3-1" onclick="goTodel('notary3-1', 'nota3-1')">AI보다는 사람이 좋다고 항의한다</button>
-    <button id="nota3-2" onclick="goTodel('notary3-2', 'nota3-2')">잘 부탁한다고 인사한다</button><br>
- </div>
-    <!-- 로비:카운터:notary3-1 --> 
-    <div id="notary3-1" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br><em>"그렇군요… 희망에 부응할 수 없어 유감입니다."</em><br><br>공증인은 풀이 죽은 것 같다.</p>
-    <button class="nav-button" onclick="goTo('notary')">다른 이야기</button>
- </div>
-    <!-- 로비:카운터:notary3-2 --> 
-    <div id="notary3-2" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br><em>"네, 잘 부탁드립니다. 초세계급 여러분의 편의를 위해 최선을 다하겠습니다."</em><br><br>공증인과 인사를 하자, 어느새 카운터 위에 반짝이는 코인이 하나 올라와 있다. 이건 선물일까?<br><span style="font-weight: bold;">1코인을 획득했다.</span></p>
-    <button class="nav-button" onclick="goTo('notary')">다른 이야기</button>
- </div>
-      <!-- 로비:카운터:notary4 --> 
-    <div id="notary4" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br><em>"그럼 문제입니다. 초세계급 기록자 로렘 님의 생년월일을 아시는지요?"</em><br><br>8자리 숫자로 대답하자.</p>
-    <input type="text" id="secret-code-input">
-    <div id="codebox">
-    <button onclick="checkSecretCode()">확인</button>
-  </div>
-    <p id="secret-code-result"></p>
-    <button class="nav-button" onclick="goTo('notary')">다른 이야기</button>
- </div>
-      <!-- 로비:카운터:notary5 --> 
-    <div id="notary5" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[카운터]<br>[공증인]</span><br><br><em>"정답입니다! 꽤 먼 곳까지 둘러보셨군요."</em><br><br>짝짝짝, 박수 소리가 울리나 싶더니 어느새 카운터 위에 동전 두 개가 놓여 있다. 퀴즈를 맞힌 보상인 것 같다.<br><span style="font-weight: bold;">2코인을 획득했다.</span></p>
-    <button class="nav-button" onclick="goTo('notary')">다른 이야기</button>
- </div>
-  
+
     <!-- 로비:라운지 --> 
     <div id="waitingspace" class="hidden">
-    <p><span style="font-weight: bold;">[로비]<br>[라운지]</span><br><br>카운터 앞쪽에 배치된 라운지. <span style="color: #202e70;">소파</span>에 앉아 잠시 쉬어가거나 담소를 나누기에 좋은 곳이다.<br>라운지 양쪽으로는 큰 유리창이 나 있어 섬의 풍경이 한눈에 들어온다.<br>잔잔한 파도가 치는 바닷가, 그 위를 평화롭게 날아다니는 바닷새들…<br>라운지 중앙에는 무료함을 달래기 위해서인지 작은 <span style="color: #202e70;">책꽂이</span>가 설치되어 있다. </p>
+    <p><span style="font-weight: bold;">[로비]<br>[라운지]</span><br><br>카운터 앞쪽에 배치된 라운지. 잠시 쉬어가는 용도의 소파가 배치되어 있지만 지금은 적당한 때가 아니다.<br>라운지 양쪽으로는 큰 유리창이 나 있어 섬의 풍경이 한눈에 들어온다.<br>사방을 둘러싼 바다는 우리가 더는 이 섬에서 나갈 수 없다는 사실을 상기시킨다.<br>라운지 중앙에는 작은 <span style="color: #202e70;">책꽂이</span>가 설치되어 있다. </p>
     <button onclick="goTo('sofa')">소파</button>
     <button onclick="goTo('bookshelf')">책꽂이</button><br>
     <button class="nav-button" onclick="goTo('lobby')">나가기</button>
  </div>
-
-    <!-- 로비:라운지:소파 --> 
-    <div id="sofa" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[소파]</span><br><br>
-    멋들어진 흰색 소파가 여러 개 놓여 있다. 누군가를 기다릴 때 앉아 있기 딱일 것 같다. 잠깐 앉아서 휴식을 취해 볼까?</p>
-    <button id="sit" onclick="goTodel('sofa1', 'sit')">앉는다</button><br>
-    <button class="nav-button" onclick="goTo('waitingspace')">나가기</button>
- </div>
-  
-      <!-- 로비:라운지:소파에 앉기 --> 
-    <div id="sofa1" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[소파]</span><br><br>
-    소파를 감싸고 있는 천의 촉감은 무척 부드럽고, 등을 받치는 쿠션은 딱 좋을 정도로 푹신하다.<br>창문 너머로 들어오는 햇빛을 받으며 계속 앉아 있으니 어쩐지 졸음이 쏟아진다...</p>
-    <button onclick="goTo('sofa1-1')">잠깐 눈을 붙인다</button><br>
-    <button onclick="goTo('sofa1-2')">졸음은 기합으로 이겨낸다!</button><br>
-    <button onclick="goTo('sofa1-3')">소파의 재질을 탐구하며 졸음을 잊어 본다</button>
- </div>
-
-    <!-- 로비:라운지:소파 1-1 --> 
-    <div id="sofa1-1" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[소파]</span><br><br>
-    어차피 자유시간이겠다, 잠깐 휴식을 취해서 안 될 것도 없겠지... 잠시 눈을 감기로 한다.<br><br>... ...<br><br>얼마나 시간이 지난 거지? 눈을 떠 보니 머리맡에 코인이 하나 놓여 있다. 그 옆에는... 쪽지?
-    <br><em>'일상 속에서 숨을 돌리는 시간은 중요합니다. 휴식의 소중함을 아는 당신에게.'</em><br>무척 기분 좋은 수면이었다. <span style="font-weight: bold;">1코인을 획득했다.</span></p>
-    <button class="nav-button" onclick="goTo('waitingspace')">나가기</button>
- </div>
-
-      <!-- 로비:라운지:소파 1-2 --> 
-    <div id="sofa1-2" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[소파]</span><br><br>
-    모처럼 나왔는데 잠이나 자고 있을 수는 없지! 졸음은 기합으로 이겨낸다.<br>벌떡! 자리에서 일어났다... 세수라도 하고 올까?</p>
-    <button class="nav-button" onclick="goTo('waitingspace')">나가기</button>
- </div>
-
-      <!-- 로비:라운지:소파 1-3 --> 
-    <div id="sofa1-3" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[소파]</span><br><br>
-    음. 이 천은 벨벳인 걸까? 촉감이 아주 고급스럽군...<br>소파를 구석구석 살펴보며 졸음을 잊어 보려고 노력했다.<br>여기저기 들여다보다 보니 소파 아래쪽에 떨어진 코인을 하나 발견했다. 이거, 눈이 번쩍 뜨이네!<br>무척 기분 좋은 수면이었다.<span style="font-weight: bold;">1코인을 획득했다.</span></p>
-    <button class="nav-button" onclick="goTo('waitingspace')">나가기</button>
- </div>
-  
     <!-- 로비:라운지:책꽂이 --> 
     <div id="bookshelf" class="hidden">
     <p><span style="font-weight: bold;">[로비]/[라운지]<br>[책꽂이]</span><br><br>
-    책의 종류는 많지 않다. 미래기관이나 초세계급에 대한 책자가 대부분이다.<br>살짝 살펴볼까?</p>
-    <button onclick="goToWithSound('book1','zzapbook.mp3')">《섬 안내서》</button><br>
-    <button onclick="goToWithSound('book2','zzapbook.mp3')">《궁금해요! 초세계급 A to Z》</button><br>
-    <button onclick="goToWithSound('book3','zzapbook.mp3')">《미래기관 연감》</button><br>
+    책의 종류는 전에 본 미래기관이나 초세계급에 대한 책자가 대부분이다.<br>또, 종이 한 장이 꽂혀 있다.</p>
+    <button onclick="goToWithSound('book1','zzapbook.mp3')">《초세계급 기록자 로렘의 유언》</button><br>
     <button class="nav-button" onclick="goTo('waitingspace')">나가기</button>
  </div>
-
 
     <!-- 로비:라운지:책1 --> 
     <div id="book1" class="hidden">
     <p><span style="font-weight: bold;">[로비]/[라운지]<br>[책꽂이]</span><br><br>
-    흰 표지의 책.<br><br>섬의 약도와 더불어 여러 안내가 쓰여 있다. <br><br>
-‘이 섬은 다양한 야생 새들의 서식지입니다. 특히 여러 해양 조류를 만나 보실 수 있습니다. 새들을 위해 건물의 모든 유리창에는 조류 충돌 방지 필름을 부착하고 있으니 안심하세요.’<br>…<br>
-‘몸이 찌뿌둥할 때는 운동이 특효약이라고 합니다. 바다를 바라보며 자전거 타기는 어떠신가요?’<br>…<br>
-‘섬 어딘가에는 소원을 들어 주는 마법 같은 호수가 있다고 합니다. 진심을 다해 빌면 오랜 바람이 이루어질지도 모릅니다.’ ... 등등.</p>
+    검은 표지의 책.<br><br>
+…유언의 집행자는 섬에서 체류하며 하기의 항목을 이행한다.<br><br>1-1. 타 유언 집행자를 대상으로 한 의도적, 계획적 살해 및 증거의 은폐.<br><br>1-2. 전항으로 말미암아 발생한 살해 사건에 대한 조사.<br><br>……</p>
     <button class="nav-button" onclick="goTo('bookshelf')">나가기</button>
  </div>
 
-      <!-- 로비:라운지:책2 --> 
-    <div id="book2" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[책꽂이]</span><br><br>
-푸른색 표지의 책.<br><br>초세계급으로 선발된 인원들에 대한 소개를 담고 있다.<br><br>초세계급의 평균 신장은 168.4cm, 2025년 기준 평균 연령은 만 29.8세…<br>…<br>…이런 정보까지 기록했다고?</p>
-    <button class="nav-button" onclick="goTo('bookshelf')">나가기</button>
- </div>
-
-    <!-- 로비:라운지:책3 --> 
-    <div id="book3" class="hidden">
-    <p><span style="font-weight: bold;">[로비]/[라운지]<br>[책꽂이]</span><br><br>
-    두꺼운 회색 표지의 책.<br><br>미래기관의 설립 과정과 활동 기록을 정리했다.<br><br>미래기관이 설립된 연도는 2000년. 그 이후 범지구적 과제를 해결하기 위해 다방면의 활동을 거듭해 왔다.<br>미래기관 설립으로부터 25년이 지난 지금도 인류는 수많은 역경을 마주하고 있지만, 우리의 노력은 분명 세상을 조금 더 나은 곳으로 만들었을 것이다.</p>
-    <button class="nav-button" onclick="goTo('bookshelf')">나가기</button>
- </div>
   
     <!-- 로비:엘리베이터 --> 
     <div id="elevator" class="hidden">
-    <p><span style="font-weight: bold;">[엘리베이터]</span><br><br>유리로 되어 있어 내부가 전부 들여다보이는 엘리베이터.<br>이 건물은 엘리베이터 주변의 공간이 뻥 뚫린 구조로 설계된 모양이다. 층고가 꽤 높아 보이는데 몇 층까지 있는 걸까...</p>
+    <p><span style="font-weight: bold;">[엘리베이터]</span><br><br>유리로 되어 있어 내부가 전부 들여다보이는 엘리베이터.<br>이 건물은 엘리베이터 주변의 공간이 뻥 뚫린 구조로 설계되어 있다.<br>몇 층까지 있는지, 어떤 위험한 시설이 존재하는지조차 우리는 모른다...</p>
     <button onclick="goTo('elevator1')">탑승한다</button><br>
     <button class="nav-button" onclick="goTo('inside')">나가기</button>
  </div>      
   
       <!-- 로비:엘리베이터:탑승 --> 
     <div id="elevator1" class="hidden">
-    <p><span style="font-weight: bold;">[엘리베이터]</span><br><br>원하는 층으로 이동할 수 있다.<br>하지만 3층 이상부터는 정비 중인지, 버튼을 눌러도 불이 들어오지 않는다.</p>
+    <p><span style="font-weight: bold;">[엘리베이터]</span><br><br>원하는 층으로 이동할 수 있다.<br>3층 이상부터는 정비 중인지, 버튼을 눌러도 불이 들어오지 않는다.</p>
     <button onclick="goToWithSound('inside','zzapelevator.mp3')">1층</button><br>
     <button onclick="goToWithSound('2ndfloor','zzapelevator.mp3')">2층</button><br>
  </div>     
   
     <!-- 레스토랑 --> 
     <div id="restaurant" class="hidden">
-    <p><span style="font-weight: bold;">[레스토랑]</span><br><br>이곳에 모인 초세계급들의 식사를 책임지는 레스토랑. 식사를 하며 바깥 풍경을 바라볼 수 있도록 유리창이 나 있다.
-    <br>레스토랑 입구에는 <span style="color: #202e70;">음료 디스펜서</span>가 배치되어 있고, 멋들어진 양탄자를 따라 내부로 들어가면 긴 <span style="color: #202e70;">테이블</span>이 놓여 있다.<br>벽 한켠에 있는 작은 문은 <span style="color: #202e70;">조리실</span>로 통하는 모양이다.</p>
-    <button onclick="goTo('dispenser')">음료 디스펜서</button>
-    <button onclick="goTo('table')">테이블</button>
-    <button onclick="goTo('kitchen')">조리실</button><br>
+    <p><span style="font-weight: bold;">[레스토랑]</span><br><br>평소 즐거운 대화 소리가 오가던 레스토랑은 쥐 죽은 듯이 조용하다.
+    </p>
       <button class="nav-button" onclick="goTo('inside')">나가기</button>
-  </div>
-
-  <!-- 레스토랑 : 음료 디스펜서 --> 
-  <div id="dispenser" class="hidden">
-  <p><span style="font-weight: bold;">[레스토랑]/[음료 디스펜서]</span><br><br>
-  커피나 차 등의 음료를 자유롭게 이용 가능한 디스펜서. 기본적인 음료는 물론, 여러 가지 맛의 원두와 티백, 시럽도 비치되어 있어 얼마든지 원하는 음료를 제조 가능할 것 같다.<br>
-  한쪽에는 '랜덤 디스펜서 : 1일 3회 이용 가능' 이라고 적힌 검은 상자가 있는데... 여기서는 뭐가 나오는 걸까?<br>그 옆에는 '랜덤 음료 공모전' 이라고 적힌 투표함이 놓여 있다.</p>
-  <button onclick="goTo('dispenser1')">음료를 뽑는다</button>
-  <button onclick="goTo('dispenser2')">랜덤 음료 공모전</button><br>
-  <button class="nav-button" onclick="goTo('restaurant')">나가기</button>
-  </div>
-  
-  <!-- 레스토랑 : 음료 디스펜서 1 (음료를 뽑는다) -->
-  <div id="dispenser1" class="hidden">
-  <p><span style="font-weight: bold;">[레스토랑]/[음료 디스펜서]</span><br><br>
-  원하는 음료를 가져가거나 랜덤 디스펜서를 이용해 보자. 랜덤 디스펜서는 1일 3회 사용 제한이 있는 것 같지만...</p>
-  <button onclick="selectDrink('coffee')">커피</button>
-  <button onclick="selectDrink('green-tea')">녹차</button>
-  <button onclick="selectDrink('orange-juice')">오렌지 주스</button>
-  <button onclick="selectRandomDrink()">랜덤</button>
-  <p id="drink-result" style="margin-top: 2em; font-weight: bold;"></p>
-  <button class="nav-button" onclick="goTo('dispenser')">나가기</button>
-</div>
-
-    <!-- 레스토랑 : 음료 디스펜서 2 (음료 공모전) -->
-  <div id="dispenser2" class="hidden">
-  <p><span style="font-weight: bold;">[레스토랑]/[음료 디스펜서]</span><br><br>
-  "랜덤 음료 공모전. 당신이 원하는 음료의 이름을 적어서 제출하면 검토 후 랜덤 음료 디스펜서에 출시될지도... 초세계급 여러분의 많은 참여 바랍니다!"<br>라고 쓰여 있다. 한 사람당 2개까지 응모 가능한 모양이다.</p>
-   <input type="text" id="gongmo">
-  <div id="gongmobox" style="display: block; margin-top: 1em;">
-  <button onclick="addgongmo()">확인</button>
-  </div>
-    <p id="gongmo-result"></p>
-  <button class="nav-button" onclick="goTo('dispenser')">나가기</button>
-</div>
-
-    <!-- 레스토랑 : 테이블 --> 
-  <div id="table" class="hidden">
-  <p><span style="font-weight: bold;">[레스토랑]/[테이블]</span><br><br>
-  1일 3회, 식사 시간마다 각종 음식이 차려지곤 하는 테이블. 다양한 문화와 취향, 영양소까지 고루 고려한 식사가 나온다.<br>
-  지금은 식사 대신 간식이 놓여 있다. 케이크, 화과자, 라스굴라, 터키쉬 딜라이트...<br>걸어다니다 지칠 때 한두 개 집어 가도 좋겠다.</p>
-  <button class="nav-button" onclick="goTo('restaurant')">나가기</button>
-  </div>
-
-      <!-- 레스토랑 : 조리실 --> 
-  <div id="kitchen" class="hidden">
-  <p><span style="font-weight: bold;">[레스토랑]/[조리실]</span><br><br>
-  조리는 물론 설거지나 정리까지 완전 자동화된 신식 주방. 지켜보는 사람이 아무도 없어도 요리가 가능하다.<br>
-  물론 원한다면 자동화 설비에 맡기는 대신 직접 <span style="color: #202e70;">조리대</span>에서 요리를 할 수도 있다. <span style="color: #202e70;">냉장고</span>와 <span style="color: #202e70;">찬장</span>에 요리에 필요한 재료와 물건들이 구비되어 있다.</p>
-  <button onclick="goTo('cooker')">조리대</button>
-  <button onclick="goTo('fridge')">냉장고</button>
-  <button onclick="goTo('drawer')">찬장</button><br>
-  <button class="nav-button" onclick="goTo('restaurant')">나가기</button>
-  </div>
-
-  <!-- 레스토랑 : 조리실 : 찬장 --> 
-  <div id="drawer" class="hidden">
-  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[찬장]</span><br><br>
-  냉장 보관하지 않아도 되는 식재료들이 가득 들어 있다. 소스류, 빵, 보존 식품 등등...<br>
-  여기 있는 음식만으로도 꽤 근사한 식사를 할 수 있을 것 같다.</p>
-  <button id="sikpang" onclick="goTodel('drawer1', 'sikpang')">식빵 한 장 가져가기</button><br>
-  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
-  </div>
-
-  <!-- 레스토랑 : 조리실 : 찬장 1 --> 
-  <div id="drawer1" class="hidden">
-  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[찬장]</span><br><br>
-  식빵 한 장을 가져갔다. 향긋한 빵 냄새가 기분 좋다.</p>
-  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
-  </div>
-  
-  <!-- 레스토랑 : 조리실 : 조리대 --> 
-  <div id="cooker" class="hidden">
-  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[조리대]</span><br><br>
-  가스레인지, 오븐, 토스터 등을 갖춘 조리대. 요리를 할 때에는 늘 화재에 조심.<br>
-  지금 제대로 된 요리를 하기에는 시간이 없지만, 식빵이 있다면 간단하게 토스트 정도는 만들 수 있으려나?</p>
-  <button id="toastbtn" onclick="maketoast('toastbtn')">식빵 굽기</button><br>
-  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
-  </div>
-
-  <!-- 레스토랑 : 조리실 : 조리대 : 토스터 --> 
-  <div id="toaster" class="hidden">
-  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[조리대]</span><br><br>
-  식빵을 토스터에 넣었다!<br>
-  몇 초 정도 굽는 게 좋을까?</p>
-  <button onclick="goTo('overcook')">600초</button>
-  <button onclick="goTo('undercook')">3초</button>
-  <button id="toasttimebtn" onclick="toasttime('toasttimebtn')">운명에 맡긴다</button><br>
-  </div>
-
-  <!-- 레스토랑 : 조리실 : 조리대 : 토스터 600초 --> 
-  <div id="overcook" class="hidden">
-  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[조리대]</span><br><br>
-  ......<br>......<br>
-  토스트는 끔찍하게 타 버렸다. 이런 건 먹을 수 없어...<br>새까매진 식빵이 처량하게 바스러졌다.</p>
-  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
-  </div>
-
-  <!-- 레스토랑 : 조리실 : 조리대 : 토스터 3초 --> 
-  <div id="undercook" class="hidden">
-  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[조리대]</span><br><br>
-  이거 구운 거 맞아?! 토스트는 딱 3초간 따뜻한 열기를 쐬었을 뿐이다.<br>이래서야 맨 식빵과 다름없겠군... 그래도 먹을 수는 있다.</p>
-  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
-  </div>
-
-  <!-- 레스토랑 : 조리실 : 조리대 : 토스터 퍼펙트 --> 
-  <div id="perfect" class="hidden">
-  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[조리대]</span><br><br>
-  완벽한 골든 브라운 토스트다! 겉은 바삭하고 안쪽은 부드럽게 결이 살아 있다.<br>운명에 맡겼는데 이 정도라니, 럭키!</p>
-  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
-  </div>
-  
-  <!-- 레스토랑 : 조리실 : 냉장고 --> 
-  <div id="fridge" class="hidden">
-  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[냉장고]</span><br><br>
-  주방 한켠에 자리잡은 냉장고. 어마어마하게 크다. 보통 냉장고의 2~3배 크기는 되는 것 같다.<br>
-  금속 문이 꽤 무거워 보이는데, 이거... 사람 힘으로 열 수는 있는 건가?</p>
-  <button id="fridgebtn" onclick="openfridge('fridgebtn')">열어 본다</button><br>
-  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
-  <p id="fridge-result"></p>
-  </div>
-
-  <!-- 레스토랑 : 조리실 : 냉장고 1 --> 
-  <div id="fridge1" class="hidden">
-  <p><span style="font-weight: bold;">[레스토랑]/[조리실]<br>[냉장고]</span><br><br>
-  영차! 온 힘을 다해 당겼더니 겨우 열렸다. 냉장고 안은 식재료로 꽉 채워져 있다.<br>
-  파릇파릇한 야채, 신선한 육류, 유제품과 계란... 기본적인 재료부터 값나가는 고급 식재료까지 무엇이든 구비되어 있다.<br>이 냉장고의 문을 열 수 있을 정도로 강한 사람에게만 주어지는 식재료의 향연이다...</p>
-  <button class="nav-button" onclick="goTo('kitchen')">나가기</button>
   </div>
 
     <!-- 2층 --> 
@@ -633,15 +393,15 @@
   
     <!-- 내빈용 객실 --> 
     <div id="suite" class="hidden">
-    <p><span style="font-weight: bold;">[내빈용 객실]</span><br><br>이 자리에 초청된 초세계급들이 편히 쉴 수 있도록 <span style="color: #202e70;">개인실</span>이 준비되어 있다.<br>문 앞에 붙은 명패에는 각자의 이름과 재능이 쓰여 있어 찾아가기 편하다.<br>객실이 이어지는 복도 끝에는 '<span style="color: #202e70;">비품실</span>'이라고 표시된 작은 방이 보인다.</p>
-    <button onclick="goTo('suite1')">개인실</button>
+    <p><span style="font-weight: bold;">[내빈용 객실]</span><br><br>초세계급들을 위한 개인실.<br>문 앞에 붙은 명패에는 각자의 이름과 재능이 쓰여 있다.<br>객실이 이어지는 복도 끝에는 '<span style="color: #202e70;">비품실</span>'이라고 표시된 작은 방이 보인다.</p>
+    <button onclick="goTo('suite1')">개인실을 조사한다</button>
     <button onclick="goTo('bipum')">비품실</button><br>
     <button class="nav-button" onclick="goTo('2ndfloor')">나가기</button>
   </div>
 
     <!-- 내빈용 객실 --> 
     <div id="suite1" class="hidden">
-    <p><span style="font-weight: bold;">[내빈용 객실]/[개인실]</span><br><br>깔끔하게 정돈된 스위트룸이다. 책상, 의자, 침대, 샤워실, 화장실... 생활에 필요한 것은 전부 있다.<br>개인실 천장에는 작은 스피커가 설치되어 있는 것이 보인다.<br>그러고 보니, 섬 어디에나 스피커가 있었지...</p>
+    <p><span style="font-weight: bold;">[내빈용 객실]/[개인실]</span><br><br>누구의 개인실을 조사할까?</p>
     <button class="nav-button" onclick="goTo('suite')">나가기</button>
   </div>
 
