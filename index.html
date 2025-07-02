@@ -347,7 +347,7 @@
     <!-- 로비:라운지:책꽂이 --> 
     <div id="bookshelf" class="hidden">
     <p><span style="font-weight: bold;">[로비]/[라운지]<br>[책꽂이]</span><br><br>
-    책의 종류는 전에 본 미래기관이나 초세계급에 대한 책자가 대부분이다.<br>또, 로렘의 유언을 기록한 종이 한 장이 꽂혀 있다.</p>
+    책의 종류는 전에 본 미래기관이나 초세계급에 대한 책자가 대부분이다.<br>또, 로렘의 유언을 기록한 얇은 책 하나도 함께 꽂혀 있다.</p>
     <button onclick="goToWithSound('book2','zzapbook.mp3')">《궁금해요! 초세계급 A to Z》</button><br>
     <button onclick="goToWithSound('book1','zzapbook.mp3')">《초세계급 기록자 로렘의 유언》</button><br>
     <button class="nav-button" onclick="goTo('waitingspace')">나가기</button>
@@ -364,13 +364,12 @@
       <!-- 로비:라운지:책2 --> 
     <div id="book2" class="hidden">
     <p><span style="font-weight: bold;">[로비]/[라운지]<br>[책꽂이]</span><br><br>
-    푸른색 표지의 책. 새로 인쇄했는지 종이가 빳빳하다<br><br>초세계급으로 선발된 인원들에 대한 소개 중에서 에르네스토의 이야기도 찾을 수 있다.<br>
-    1991년 출생.<br>2005년 재해로 인해 실향.<br>2022년 초세계급 재해과학자로 임명.<br>2025년 사망.
+    푸른색 표지의 책. 새로 인쇄했는지 종이가 빳빳하다<br><br>초세계급으로 선발된 인원들에 대한 소개 중에서 에르네스토의 이야기도 찾을 수 있다.<br><br>
+    1991년 출생.<br>2005년 재해로 인해 실향.<br>2022년 초세계급 재해과학자로 임명.<br><span style="font-weight: bold;">2025년 사망.</span>
 </p>
     <button class="nav-button" onclick="goTo('bookshelf')">나가기</button>
  </div>
 
-  
     <!-- 로비:엘리베이터 --> 
     <div id="elevator" class="hidden">
     <p><span style="font-weight: bold;">[엘리베이터]</span><br><br>유리로 되어 있어 내부가 전부 들여다보이는 엘리베이터.<br>이 건물은 엘리베이터 주변의 공간이 뻥 뚫린 구조로 설계되어 있다.<br>몇 층까지 있는지, 어떤 위험한 시설이 존재하는지조차 우리는 모른다...</p>
@@ -410,20 +409,33 @@
 
     <!-- 내빈용 객실 --> 
     <div id="suite1" class="hidden">
-    <p><span style="font-weight: bold;">[내빈용 객실]/[개인실]</span><br><br>누구의 개인실을 조사할까?</p>
+    <p><span style="font-weight: bold;">[내빈용 객실]/[개인실]</span><br><br>누구의 개인실을 조사할까? 정확한 풀네임으로 입력하자.</p>
+    <input type="text" id="secret-code-input">
+    <div id="codebox">
+    <button onclick="checkSecretCode()">확인</button>
+  </div>
+    <p id="secret-code-result"></p>
+    <button class="nav-button" onclick="goTo('suite')">나가기</button>
+ </div>
+  
+    <!-- 에른 방 --> 
+    <div id="evi13" class="hidden">
+    <p><span style="font-weight: bold;">[내빈용 객실]/[에르네스토의 개인실]</span>
+    <br><br>모두에게 제공되는 것과 크게 다르지 않은 에르네스토의 방.<br>방 주인의 성격을 반영하듯 대충대충 정리된 것이 눈에 띈다. 개지도 않은 이불이라거나...<br><br>특별히 눈에 띄는 것은 없지만, 모든 객실에 비치해 두는 메모장이 보이지 않는다.</p>
+    <button onclick="goTo('bipum1')">도구함을 연다</button><br>
     <button class="nav-button" onclick="goTo('suite')">나가기</button>
   </div>
 
     <!-- 비품실 --> 
     <div id="bipum" class="hidden">
     <p><span style="font-weight: bold;">[내빈용 객실]/[비품실]</span><br><br>생활에 필요한 각종 비품을 구비해 두는 곳.<br>휴지나 종이컵 같은 일회용품부터 각종 청소용구까지, 없는 게 없다.<br>비품실 한가운데에 커다란 <span style="color: #202e70;">도구함</span>이 뚜껑이 닫힌 채로 놓여 있다.</p>
-    <button onclick="goTo('bipum1')">도구함을 연다</button><br>
+    <button onclick="goTo('evi14')">도구함을 연다</button><br>
     <button class="nav-button" onclick="goTo('suite')">나가기</button>
   </div>
   
       <!-- 비품실 : 도구함 --> 
-    <div id="bipum1" class="hidden">
-    <p><span style="font-weight: bold;">[내빈용 객실]/[비품실]</span><br><br>도구함의 뚜껑을 들어올리면, 그 안에는 톱, 전동 가위, 도끼 같은 물건들이 가지런히 들어 있다.<br>아무래도 위험한 물건들이다 보니 따로 보관하는 모양이다.</p>
+    <div id="evi14" class="hidden">
+    <p><span style="font-weight: bold;">[내빈용 객실]/[비품실]</span><br><br>도구함의 뚜껑을 들어올리면, 그 안에는 톱, 전동 가위, 도끼 같은 물건들이 가지런히 들어 있다.<br><br>무언가 사라진 것 같지는 않다. 아무도 건드리지 않은 모양이다.</p>
     <button class="nav-button" onclick="goTo('bipum')">나가기</button>
   </div>
   
@@ -1158,7 +1170,7 @@ function checkSecretCode() {
       codebox.style.display = 'none';
       codebox.setAttribute('data-used', 'true');  // ✅ 한 번 사용했음을 표시
     }
-    goTo('ernroom');
+    goTo('evi13');
   } else {
     const result = document.getElementById('secret-code-result');
     result.innerText = "잠겨 있는 방이다.";
