@@ -603,7 +603,10 @@
 
     <div id="street1" class="hidden">
     <p><span style="font-weight: bold;">[산책로]</span><br><br>천천히 걸어서 산책하기로 했다.</p>
-  <button onclick="goTo('street2-2')">계속 걷는다</button>
+      <button id="st1" onclick="ev8('st1')">주변을 자세히 살펴본다</button><br>
+      <button onclick="goTo('street2-2')">계속 걷는다</button>
+      <button class="nav-button" onclick="goTo('street')">나가기</button>
+      <p id="evi8-result"></p>
   </div>
   
       <!-- 산책로-작은 벤치 --> 
@@ -630,33 +633,21 @@
   
       <!-- 산책로2:자전거 대여소 --> 
     <div id="street2" class="hidden">
-    <p><span style="font-weight: bold;">[산책로]<br>[자전거 대여소]</span><br><br>바닷바람과 속도를 즐기고 싶은 사람들을 위한 자전거 대여소.<br>다양한 종류의 자전거가 마련되어 있다.<br>2인승 자전거, 전기 자전거… 외바퀴자전거까지?<br><br>이용료는 무료지만, 한 사용자당 1일 1회 사용 제한이 있는 모양이다.</p>
-    <button id="bikerental" onclick="goTodel('street2-1', 'bikerental')">자전거를 대여한다</button><br>
+    <p><span style="font-weight: bold;">[산책로]<br>[자전거 대여소]</span><br><br>1일 1회, 자전거를 대여할 수 있는 대여소.</p>
+  <button onclick="goTo('evi11')">자전거를 살펴본다</button>
     <button class="nav-button" onclick="goTo('street')">나가기</button>
   </div>
 
-    <!-- 산책로:2-1 (자전거 대여) --> 
-  <div id="street2-1" class="hidden"> <p><span style="font-weight: bold;">[산책로]<br>[자전거 대여소]</span><br><br>어떤 자전거를 빌릴까?</p> 
-  <button onclick="goTo('street2-1-1')">평범한 자전거</button>
-  <button onclick="goTo('street2-1-1')">전기 자전거</button>
-  <button onclick="goTo('street2-1-2')">외바퀴 자전거</button>
+        <!-- 산책로2:자전거 대여소 --> 
+    <div id="evi11" class="hidden">
+    <p><span style="font-weight: bold;">[산책로]<br>[자전거 대여소]</span><br><br>자전거 중에는 앞에 짐이나 아이를 태울 수 있게끔 작은 수레가 달린 형태도 있다.<br>자세히 보면 수레 안쪽에 약간의 물이 고여 있는 데다가, 익숙한 갈색 머리카락이 한두 가닥이 붙어 있다.<br>아마도 에르네스토의 것이지만... 에르네스토 본인이 직접 작은 수레에 탈 일은 없었겠지.</p>
+    <button class="nav-button" onclick="goTo('street')">나가기</button>
   </div>
-
-  <!-- 산책로:2-1-1 (일반 자전거) --> 
-  <div id="street2-1-1" class="hidden"> 
-  <p><span style="font-weight: bold;">[산책로]</span><br><br>빌린 자전거를 타고 달리자 딱 기분 좋은 바람이 불어온다. 상쾌한 느낌이다.<br>여기 있는 동안 기분 전환을 하고 싶다면 가끔 이렇게 달려보는 것도 좋겠지…</p>
-  <button onclick="goTo('street2-2')">계속 달린다</button>
-  </div>
-
-  <!-- 산책로:2-1-2 (외바퀴 자전거) --> 
-  <div id="street2-1-2" class="hidden"> 
-  <p><span style="font-weight: bold;">[산책로]</span><br><br>기세 좋게 외바퀴 자전거를 고른 것은 좋았지만... 중심 잡기가 쉽지 않다!<br>몇 번 아슬아슬하게 넘어질 뻔한 뒤에야 익숙해졌다. 이거, 꽤 운동이 될 것 같은데...<br><br>적응하고 나니 뺨에 닿는 바람이 제법 상쾌하게 느껴진다.</p>
-  <button onclick="goTo('street2-2')">계속 달린다</button>
-  </div>
+  
   
   <!-- 산책로:2-2 소원의 호수 입구 --> 
   <div id="street2-2" class="hidden"> 
-  <p><span style="font-weight: bold;">[산책로]</span><br><br>어느새 산책로의 끝이다. 눈앞에 보이는 것은 작은 호수인데… 자세히 보니 <span style="color: #202e70;">소원의 호수</span>라고 적힌 팻말이 꽂혀 있다.</p>
+  <p><span style="font-weight: bold;">[산책로]</span><br><br>어느새 산책로의 끝이다. 눈앞에 보이는 것은 작은 호수다. <span style="color: #202e70;">소원의 호수</span>라고 적힌 팻말이 꽂혀 있다.</p>
   <button onclick="goTo('street3')">소원의 호수</button><br>
   <button class="nav-button" onclick="goTo('street')">이만 돌아간다</button>
   </div>
