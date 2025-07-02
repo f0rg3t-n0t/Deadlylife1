@@ -1040,6 +1040,12 @@ function goTo(page) {
     if (['nfl'].includes(page)) {
     currentUser.evidnfl = true;
   }
+      if (['evi14'].includes(page)) {
+    currentUser.evid14 = true;
+  }
+      if (['evi15'].includes(page)) {
+    currentUser.evid15 = true;
+  }
     if (page === 'starting-point') {
     document.getElementById('persistent-nav').style.display = 'flex';
   }}
