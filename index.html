@@ -602,11 +602,25 @@
       <!-- 산책로-작은 벤치 --> 
     <div id="bench" class="hidden">
     <p><span style="font-weight: bold;">[산책로]<br>[작은 벤치]</span><br><br>바다를 향하는 쪽으로 놓인 벤치. 앉아서 쉬기에 딱 좋은 장소다.<br>
-    수평선 끝까지 푸른색이 뻗어나간다. 시야를 가리는 것은 아무것도 없다.<br>
-    이렇게 육지와 동떨어진 곳에 미래기관의 시설이 위치하고 있을 줄은 아무도 몰랐겠지...</p>
+    수평선 끝까지 음산한 청색이 뻗어나간다. 시야를 가리는 것은 아무것도 없다는 사실이 막막하게 느껴진다.<br>
+    이렇게 육지와 동떨어진 곳에 있으니, 구조 요청 따위 할 수 있을 리 없다...</p>
+    <button onclick="goTo('evi12')">벤치 정면</button>
+    <button onclick="goTo('evi15')">벤치 등받이</button>
     <button class="nav-button" onclick="goTo('street')">나가기</button>
   </div>
 
+        <!-- 산책로-작은 벤치 --> 
+    <div id="evi12" class="hidden">
+    <p><span style="font-weight: bold;">[산책로]<br>[작은 벤치]/[정면]</span><br><br>잠시 앉아 있으니 옷이 눅눅해진 느낌이 든다. 최근에 물을 뿌리기라도 한 듯 의자에 물기가 남아 있다.</p>
+    <button class="nav-button" onclick="goTo('bench')">나가기</button>
+  </div>
+
+          <!-- 산책로-작은 벤치 --> 
+    <div id="evi15" class="hidden">
+    <p><span style="font-weight: bold;">[산책로]<br>[작은 벤치]/[등받이]</span><br><br>벤치 등받이 뒤쪽 눈에 띄지 않는 위치에 지워지다 만 핏자국이 남아 있다.</p>
+    <button class="nav-button" onclick="goTo('bench')">나가기</button>
+  </div>
+  
       <!-- 산책로2:자전거 대여소 --> 
     <div id="street2" class="hidden">
     <p><span style="font-weight: bold;">[산책로]<br>[자전거 대여소]</span><br><br>바닷바람과 속도를 즐기고 싶은 사람들을 위한 자전거 대여소.<br>다양한 종류의 자전거가 마련되어 있다.<br>2인승 자전거, 전기 자전거… 외바퀴자전거까지?<br><br>이용료는 무료지만, 한 사용자당 1일 1회 사용 제한이 있는 모양이다.</p>
