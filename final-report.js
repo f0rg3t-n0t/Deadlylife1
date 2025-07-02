@@ -16,11 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
       align: 'left',
       lineStyle: 'color: #202e70; font-weight: bold;'
     },
-    {
-      html: `획득 코인 수: <strong>${currentUser.coin}</strong>`,
-      align: 'left',
-      lineStyle: 'color: black;'
-    },
     ...(currentUser.post ? [{
       html: `「${currentUser.post}」 압화된 엽서를 손에 넣었다.`,
       align: 'right',
