@@ -410,9 +410,9 @@
      <!-- 내빈용 객실 --> 
     <div id="suite1" class="hidden">
     <p><span style="font-weight: bold;">[내빈용 객실]/[개인실]</span><br><br>누구의 개인실을 조사할까? 정확한 풀네임으로 입력하자.</p>
-        <input type="text" id="secret-code-input">
-    <div id="codebox">
-    <button onclick="checkSecretCode()">확인</button><br><br>
+<input type="text" id="secret-code-input">
+<p id="secret-code-result"></p>
+<button id="secret-code-button" onclick="checkSecretCode()">확인</button>
   </div>
     <p id="secret-code-result"></p><br><br>>
     <button class="nav-button" onclick="goTo('suite')">나가기</button>
@@ -976,6 +976,10 @@ function goTo(page) {
   const target = document.getElementById(page);
   target.classList.remove('hidden');
   target.classList.add('fade-in');
+  if (page === 'suite1') {
+    const btn = document.getElementById('secret-code-button');
+    if (btn) btn.classList.remove('hidden');
+  }
   clearOutputs();
   pageHistory.push(page);
   //[중요]특정 페이지 진입 시 증거 획득
