@@ -412,7 +412,7 @@
     <p><span style="font-weight: bold;">[내빈용 객실]/[개인실]</span><br><br>누구의 개인실을 조사할까? 정확한 풀네임으로 입력하자.</p>
 <input type="text" id="secret-code-input">
 <p id="secret-code-result"></p>
-<button id="secret-code-button" onclick="checkSecretCode()">확인</button>
+<button id="secret-code-button" onclick="checkSecretCode()">확인</button><br>
     <button class="nav-button" onclick="goTo('suite')">나가기</button>
  </div>
 
@@ -650,7 +650,7 @@
   
   <!-- 산책로:2-2 소원의 호수 입구 --> 
   <div id="street2-2" class="hidden"> 
-  <p><span style="font-weight: bold;">[산책로]</span><br><br>어느새 산책로의 끝이다. 눈앞에 보이는 것은 작은 호수다.<br>이런 상황에서 소원이 무슨 의미일지는 모르겠지만...<br><br>호수 근처에 작은 <span style="color: #202e70;">메모장</span>하나가 떨어져 있다.</p>
+  <p><span style="font-weight: bold;">[산책로]</span><br><br>어느새 산책로의 끝이다. 눈앞에 보이는 것은 작은 호수다.<br>이런 상황에서 소원이 무슨 의미일지는 모르겠지만...<br><br>호수 근처에 작은 <span style="color: #202e70;">메모장 </span>하나가 떨어져 있다.</p>
   <button onclick="goTo('evi9')">메모장을 확인한다</button><br>
   <button class="nav-button" onclick="goTo('street')">이만 돌아간다</button>
   </div>
@@ -1003,9 +1003,6 @@ function goTo(page) {
   }
     if (['evi6'].includes(page)) {
     currentUser.evid6 = true;
-  }
-    if (['evi7'].includes(page)) {
-    currentUser.evid1 = true;
   }
     if (['evi7'].includes(page)) {
     currentUser.evid1 = true;
