@@ -501,21 +501,28 @@
 
       <!-- !!메모리얼 파크:화원 --> 
     <div id="garden" class="hidden">
-    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[화원]</span><br><br>화원. 장미 덤불이 시야를 가릴 정도의 높이로 다듬어져 있어 마치 미로를 연상케 한다.<br>한켠에는 <span style="color: #202e70;">헌화용 꽃</span>이 놓여 있던 공간이 있다.</p>
+    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[화원]</span><br><br>화원. 장미 덤불이 시야를 가릴 정도의 높이로 다듬어져 있어 마치 미로를 연상케 한다.<br>한켠에는 <span style="color: #202e70;">헌화용 꽃</span>이 놓여 있던 공간이 있다.<br>꽃이 놓인 공간 근처에 화원 관리에 필요한 물건들을 둔 <span style="color: #202e70;">도구 상자</span>가 보인다.</p>
     <button onclick="goTo('nfl')">헌화용 꽃을 확인한다</button>
+    <button onclick="goTo('evi7')">화원의 도구 상자</button>
     <button class="nav-button" onclick="goTo('memorial1')">나가기</button>
   </div>
 
-      <!-- !!헌화용 꽃 --> 
+        <!-- !!헌화용 꽃 --> 
     <div id="nfl" class="hidden">
-    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]</span><br><br>본래 가득 쌓여 있었던 헌화용 꽃이 무더기로 사라져 있다.<br>국화는 거의 사라지고 수국과 장미만 남았다.</p>
+    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]/[헌화용 꽃]</span><br><br>본래 가득 쌓여 있었던 헌화용 꽃이 무더기로 사라져 있다.<br>국화는 거의 사라지고 수국과 장미만 남았다.</p>
+    <button class="nav-button" onclick="goTo('garden')">나가기</button>
+  </div>
+  
+    <!-- !!도구상자 --> 
+    <div id="evi7" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]/[도구 상자]</span><br><br>메모리얼 파크와 화원을 관리할 수 있는 도구 몇 가지가 간단하게 정리되어 있다.<br>다만 무덤을 만들고 관리하기 위한 도구들은 사용한 흔적이 없다.<br>오히려 엉뚱하게 화원에 물을 주기 위한 고무호스나 물 양동이 따위만 누가 쓰고 돌려놓은 것 같다.</p>
     <button class="nav-button" onclick="goTo('garden')">나가기</button>
   </div>
 
       <!-- !!메모리얼 파크:로렘의 묘비 --> 
     <div id="memorial-lorem" class="hidden">
     <p><span style="font-weight: bold;">[메모리얼 파크]<br>[로렘의 묘비]</span><br><br>1985.06.09-2025.XX.XX
-    <br><br>로렘이 이 자리의 초세계급을 대상으로 서로를 살해하라는 유언을 남겼다는 것은 진실일까?<br>만일 진실이라면, 어째서?<br><br>물론 답은 들려올 리 없다.</p>
+    <br><br>로렘이 이 자리의 초세계급에게 서로를 살해하라는 유언을 남겼다는 것은 진실일까?<br>만일 진실이라면, 어째서?<br><br>물론 답은 들려올 리 없다.</p>
     <button class="nav-button" onclick="goTo('memorial1')">나가기</button>
   </div>
 
