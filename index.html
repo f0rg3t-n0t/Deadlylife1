@@ -938,50 +938,51 @@ function goTo(page) {
   target.classList.add('fade-in');
   clearOutputs();
   pageHistory.push(page);
-  //[중요]특정 페이지 진입 시 스탯(코인 등)변동
-  if (['notary3-2','flowerpage','sofa1-1','sofa1-3','feed2'].includes(page)) {
-    currentUser.coin = (currentUser.coin || 0) + 1;
-    updateCoinDisplay();
+  //[중요]특정 페이지 진입 시 증거 획득
+    if (['evi1'].includes(page)) {
+    currentUser.evid1 = true;
   }
-  if (['notary5','pond-money','pond-nota2'].includes(page)) {
-    currentUser.coin = (currentUser.coin || 0) + 2;
-    updateCoinDisplay();
+    if (['evi2'].includes(page)) {
+    currentUser.evid2 = true;
   }
-  if (['flowerobtain'].includes(page)) {
-    currentUser.key = 1;
-    updateCoinDisplay();
+    if (['evi3'].includes(page)) {
+    currentUser.evid3 = true;
   }
-    if (['street2-1-2'].includes(page)) {
-    currentUser.unicycle = true;
-    updateCoinDisplay();
+    if (['evi4'].includes(page)) {
+    currentUser.evid4 = true;
   }
-    if (['pond-nota2'].includes(page)) {
-    currentUser.notalove = true;
-    updateCoinDisplay();
+    if (['evi5'].includes(page)) {
+    currentUser.evid5 = true;
   }
-      if (['pond-friend'].includes(page)) {
-    currentUser.wishticket = true;
-    updateCoinDisplay();
+    if (['evi6'].includes(page)) {
+    currentUser.evid6 = true;
   }
-        if (['drawer1'].includes(page)) {
-    currentUser.bread = 1;
-    updateCoinDisplay();
+    if (['evi7'].includes(page)) {
+    currentUser.evid1 = true;
   }
-          if (['fltest6'].includes(page)) {
-    currentUser.post = "아데니움이";
-    updateCoinDisplay();
+    if (['evi7'].includes(page)) {
+    currentUser.evid1 = true;
   }
-          if (['fltest7'].includes(page)) {
-    currentUser.post = "능소화가";
-    updateCoinDisplay();
+    if (['evi8'].includes(page)) {
+    currentUser.evid8 = true;
   }
-          if (['fltest8'].includes(page)) {
-    currentUser.post = "거베라가";
-    updateCoinDisplay();
+    if (['evi9'].includes(page)) {
+    currentUser.evid9 = true;
   }
-          if (['fltest9'].includes(page)) {
-    currentUser.post = "라벤더가";
-    updateCoinDisplay();
+    if (['evi10'].includes(page)) {
+    currentUser.evid10 = true;
+  }
+    if (['evi11'].includes(page)) {
+    currentUser.evid11 = true;
+  }
+    if (['evi12'].includes(page)) {
+    currentUser.evid12 = true;
+  }
+    if (['evi13'].includes(page)) {
+    currentUser.evid13 = true;
+  }
+    if (['nfl'].includes(page)) {
+    currentUser.evidnfl = true;
   }
     if (page === 'starting-point') {
     document.getElementById('persistent-nav').style.display = 'flex';
@@ -1094,80 +1095,63 @@ function goBack() {
 
 
 //여기서부터 특정 장소에서 사용하도록 되어 있는 함수!!!!
-//★★★★★헌화★★★★★
-function giveflower(buttonId) {
-  if (currentUser.key === 1) {
-    // 버튼 제거
-    const btn = document.getElementById(buttonId);
-    if (btn) btn.remove();  // 단 한 번만 제거
-    goTo('flowerpage');
-  } else {
-    alert("꽃을 가지고 있지 않다. 어디서 구할 수 있을까...");
-  }
-}
-//★★★★★냉장고★★★★★
-function openfridge(buttonId) {
+function ev2(buttonId) {
   if (currentUser.STR >= 4) {
-    goTo('fridge1');
+    goTo('evi2');
   } else {
-    const result = document.getElementById('fridge-result');
-    result.innerText = "열심히 문을 당겨 봤지만... 꿈쩍도 하지 않는다. 힘이 부족해...!";
+    const result = document.getElementById('evi2-result');
+    result.innerText = "자세히 살펴봤지만 더 떠오르는 것은 없다.";
   }
 }
-//★★★★★토스트★★★★★
-function maketoast(buttonId) {
-  if (currentUser.bread === 1) {
-    // 버튼 제거
-    const btn = document.getElementById(buttonId);
-    if (btn) btn.remove();  // 단 한 번만 제거
-    goTo('toaster');
+
+function ev4(buttonId) {
+  if (currentUser.POW >= 4) {
+    goTo('evi4');
   } else {
-    alert("식빵을 가지고 있지 않다. 어디 있으려나?");
+    const result = document.getElementById('evi4-result');
+    result.innerText = "자세히 보기에는 지나치게 참혹한 모습이다.";
   }
 }
-//★★★★★토스트 굽기★★★★★
-function toasttime(buttonId) {
-  if (currentUser.LUC <= 2) {
-    goTo('overcook');
-  } else if (currentUser.LUC >= 4) {
-    goTo('perfect');
+
+function ev6(buttonId) {
+  if (currentUser.OBS >= 4) {
+    goTo('evi6');
   } else {
-    goTo('undercook');
+    const result = document.getElementById('evi6-result');
+    result.innerText = "자세히 살펴봤지만 눈에 띄는 것은 없다.";
   }
 }
-//★★★★★갈매기 밥★★★★★
-function feedgalmaegi(buttonId) {
-  if (currentUser.POW <= 2) {
-    goTo('feed1');
-  } else if (currentUser.POW >= 4) {
-    goTo('feed2');
+
+function ev8(buttonId) {
+  if (currentUser.LUC >= 3) {
+    goTo('evi8');
   } else {
-    goTo('feed3');
+    const result = document.getElementById('evi8-result');
+    result.innerText = "눈에 띄는 것은 없다.";
   }
 }
-//★★★★★탐조★★★★★
-function watchbird(buttonId) {
-  if (currentUser.OBS <= 2) {
-    goTo('sand2');
-  } else if (currentUser.OBS >= 4) {
-    goTo('sand3');
+function ev10(buttonId) {
+  if (currentUser.INT >= 4) {
+    goTo('evi10');
   } else {
-    goTo('sand4');
+    const result = document.getElementById('evi10-result');
+    result.innerText = "자세히 들여다보았지만 더 생각나는 것은 없다.";
   }
 }
+
 //★★★★★퀴즈★★★★★
 function checkSecretCode() {
   const input = document.getElementById('secret-code-input').value;
-  if (input === "19850609") { // 원하는 정답
+  if (input === "에르네스토 프로켈") { // 원하는 정답
     const codebox = document.getElementById('codebox');
     if (codebox) {
       codebox.style.display = 'none';
       codebox.setAttribute('data-used', 'true');  // ✅ 한 번 사용했음을 표시
     }
-    goTo('notary5');
+    goTo('ernroom');
   } else {
     const result = document.getElementById('secret-code-result');
-    result.innerText = "공증인은 침묵하고 있다... 아무래도 이게 정답이 아닌 것 같다.";
+    result.innerText = "잠겨 있는 방이다.";
   }
 }    
 
