@@ -482,38 +482,18 @@
     <button class="nav-button" onclick="goTo('outside')">나가기</button>
   </div>
   
-
-        <!-- 항구 : 백사장 --> 
-      <div id="sand" class="hidden">
-    <p><span style="font-weight: bold;">[항구]<br>[백사장]</span><br><br>
-    끝없는 바다와 모래사장이 시야를 채운다.<br>너울거리는 파도가 흰 모래에 섞여 부서지고, 열기를 싣은 바람이 피부를 간질인다.<br>기분 좋은 날씨를 만끽할 수 있는 백사장.<br>육지와 가까운 곳에 <span style="color: #202e70;">망원경</span>이 몇 개 설치되어 있다.</p>
-    <button id="mangwongyeong" onclick="goTodel('sand1', 'mangwongyeong')">망원경을 사용한다</button><br>
-    <button class="nav-button" onclick="goTo('port1')">나가기</button>
-  </div>
-
-          <!-- 항구 : 백사장:망원경 --> 
-      <div id="sand1" class="hidden">
-    <p><span style="font-weight: bold;">[항구]<br>[백사장]</span><br><br>
-    이 망원경은 바닷새들을 관찰하는 용도로 만들어진 것 같다. 조류 도감에서 발췌한 페이지들이 코팅된 채 망원경에 걸려 있다.<br>그럼 어디 한 번 탐조를 시작해 볼까...</p>
-   <button id="gwak" onclick="watchbird('gwak')">탐조를 시작한다</button><br>
-  </div>
-
-
-  
-
-  
     <!-- 메모리얼 파크 --> 
     <div id="memorial" class="hidden">
     <p><span style="font-weight: bold;">[메모리얼 파크 입구]</span><br><br>흰 울타리로 둘러싸여 구획지어진 공간이 바다와 접하고 있다.<br>한밤의 메모리얼 파크는 을씨년스럽기 그지없다.<br><br>
-    <span style="color: #737373;">'메모리얼 파크에 입장한다' 버튼 클릭 시 효과음이 재생됩니다.</span></p>
     <button onclick="goTo('memorial1')">메모리얼 파크에 입장한다</button><br>
     <button class="nav-button" onclick="goTo('outside')">나가기</button>
   </div>
 
       <!-- 메모리얼 파크:1 --> 
     <div id="memorial1" class="hidden">
-    <p><span style="font-weight: bold;">[메모리얼 파크]</span><br><br>짧게 깎인 잔디 위로 새하얀 비석이 놓였다.<br>이곳은 세상을 떠난 초세계급을 기리는 메모리얼 파크. 당장이라도 죽음이 발목을 붙잡을 것만 같다.<br>불규칙한 파도 소리가 마치 비웃음처럼 들려온다.<br>메모리얼 파크를 가로지르는 길은 <span style="color: #202e70;">화원</span>으로 이어진다.</p>
+    <p><span style="font-weight: bold;">[메모리얼 파크]</span><br><br>짧게 깎인 잔디 위로 새하얀 비석이 놓였다.<br>이곳은 세상을 떠난 초세계급을 기리는 메모리얼 파크. 당장이라도 죽음이 발목을 붙잡을 것만 같다.<br>불규칙한 파도 소리가 마치 비웃음처럼 들린다.<br>메모리얼 파크를 가로지르는 길은 <span style="color: #202e70;">화원</span>으로 이어진다.<br><br>로렘의 묘비 옆에는 어제까지만 해도 없었던 <span style="color: #202e70;">의문의 무덤</span>이 있다. </p>
     <button onclick="goTo('memorial-lorem')">로렘의 묘비</button>
+    <button onclick="goTo('memorial-ern')">의문의 무덤</button>
     <button onclick="goTo('garden')">화원</button><br>
     <button class="nav-button" onclick="goToWithoutzzapsea('memorial')">나가기</button>
   </div>
@@ -527,21 +507,81 @@
 
       <!-- !!헌화용 꽃 --> 
     <div id="nfl" class="hidden">
-    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]</span><br><br>본래 가득 쌓여 있었던 헌화용 꽃이 무더기로 사라져 있다.</p>
+    <p><span style="font-weight: bold;">[메모리얼 파크]/[화원]</span><br><br>본래 가득 쌓여 있었던 헌화용 꽃이 무더기로 사라져 있다.<br>국화는 거의 사라지고 수국과 장미만 남았다.</p>
     <button class="nav-button" onclick="goTo('garden')">나가기</button>
   </div>
 
       <!-- !!메모리얼 파크:로렘의 묘비 --> 
     <div id="memorial-lorem" class="hidden">
-    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[로렘의 묘비]</span><br><br>1985.06.09-2025.XX.XX</p>
-    <button id="flowerbtn" onclick="giveflower('flowerbtn')">헌화한다</button><br>
+    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[로렘의 묘비]</span><br><br>1985.06.09-2025.XX.XX
+    <br><br>로렘이 이 자리의 초세계급을 대상으로 서로를 살해하라는 유언을 남겼다는 것은 진실일까?<br>만일 진실이라면, 어째서?<br><br>물론 답은 들려올 리 없다.</p>
     <button class="nav-button" onclick="goTo('memorial1')">나가기</button>
   </div>
 
-      <!-- !!메모리얼 파크:로렘의 묘비:헌화 --> 
-    <div id="flowerpage" class="hidden">
-    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[로렘의 묘비]</span><br><br>묘비 앞에 꽃을 가지런히 올려놓았다. 바람에 꽃잎이 살짝 흔들린다.<br>잠시 눈을 감았다 뜨니... 원래 여기 코인이 놓여 있었던가?<br><span style="font-weight: bold;">1코인을 획득했다.</span></p>
+      <!-- !!메모리얼 파크:에르네스토 무덤 --> 
+    <div id="memorial-ern" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[의문의 무덤]</span><br><br>
+    나름대로 정돈한 듯 가지런한 자세로 에르네스토 프로켈의 시체가 누워 있다.</p>
+    <button onclick="goTo('evi1')">전체적인 상태</button><br>
+    <button onclick="goTo('evi3')">머리를 살펴본다</button><br>
+    <button onclick="goTo('evi5')">상체를 살펴본다</button><br>
+    <button onclick="goTo('foot')">하체를 살펴본다</button><br>
     <button class="nav-button" onclick="goTo('memorial1')">나가기</button>
+  </div>
+
+      <!-- !!메모리얼 파크:에르네스토 무덤 --> 
+    <div id="evi1" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[의문의 무덤]</span><br><br>
+    관 없이 매장된 탓에 옷에 흙먼지가 묻어 있으나 뜯어지거나 해진 곳은 없다.<br>오히려 마치 예의라도 차린 듯 잘 정돈된 상태다.</p>
+   <button id="e1" onclick="ev2('e1')">자세히 본다</button><br>
+  <button class="nav-button" onclick="goTo('memorial-ern')">나가기</button>
+    <p id="evi2-result"></p>
+  </div>
+
+      <!-- !!메모리얼 파크:에르네스토 무덤 --> 
+    <div id="evi2" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[의문의 무덤]</span><br><br>
+    에르네스토는 작은 체구가 아니다.<br>살해하는 것까지는 어떻게든 한다고 쳐도 시체를 깨끗하게 묻어 주려면 상당한 힘이 필요할 것이다.</p>
+  <button class="nav-button" onclick="goTo('memorial-ern')">나가기</button>
+  </div>
+
+        <!-- !!메모리얼 파크:에르네스토 무덤 --> 
+    <div id="evi3" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[의문의 무덤]</span><br><br>
+    뒤통수가 강한 힘으로 가격당한 듯 다소 찌그러져 있다.<br>머리카락에는 피와 흙이 엉겨 붙어서 엉망이다.</p>
+     <button id="e3" onclick="ev4('e3')">자세히 본다</button><br>
+  <button class="nav-button" onclick="goTo('memorial-ern')">나가기</button>
+      <p id="evi4-result"></p>
+  </div>
+
+        <!-- !!메모리얼 파크:에르네스토 무덤 --> 
+    <div id="evi4" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[의문의 무덤]</span><br><br>
+    용기를 내어 머리의 상흔을 좀 더 자세히 확인했다.<br>형태로 보아 흉기는 타격 범위가 넓은 둔기로 보인다.</p>
+  <button class="nav-button" onclick="goTo('memorial-ern')">나가기</button>
+  </div>
+
+        <!-- !!메모리얼 파크:에르네스토 무덤 --> 
+    <div id="evi5" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[의문의 무덤]</span><br><br>
+    머리에서 흐른 피가 옷에도 묻어 있다.<br>가슴 위쪽으로는 국화꽃이 다발로 놓여 있다. 설마... 시체에 헌화한 건가?</p>
+  <button class="nav-button" onclick="goTo('memorial-ern')">나가기</button>
+  </div>
+
+          <!-- !!메모리얼 파크:에르네스토 무덤 --> 
+    <div id="foot" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[의문의 무덤]</span><br><br>
+    머리에서 흐른 피가 옷에도 묻어 있다.</p>
+     <button id="ft" onclick="ev6('ft')">자세히 본다</button><br>
+  <button class="nav-button" onclick="goTo('memorial-ern')">나가기</button>
+      <p id="evi6-result"></p>
+  </div>
+
+        <!-- !!메모리얼 파크:에르네스토 무덤 --> 
+    <div id="evi6" class="hidden">
+    <p><span style="font-weight: bold;">[메모리얼 파크]<br>[의문의 무덤]</span><br><br>
+    자세히 보니 신발 쪽에 풀잎 따위가 붙어 있다. 산책로에 있을 법한 잡초다.</p>
+  <button class="nav-button" onclick="goTo('memorial-ern')">나가기</button>
   </div>
 
       <!-- 산책로 --> 
