@@ -413,8 +413,7 @@
 <input type="text" id="secret-code-input">
 <p id="secret-code-result"></p>
 <button id="secret-code-button" onclick="checkSecretCode()">확인</button>
-  </div>
-    <p id="secret-code-result"></p><br><br>>
+    <p id="secret-code-result">
     <button class="nav-button" onclick="goTo('suite')">나가기</button>
  </div>
 
@@ -423,7 +422,6 @@
     <div id="evi13" class="hidden">
     <p><span style="font-weight: bold;">[내빈용 객실]/[에르네스토의 개인실]</span>
     <br><br>모두에게 제공되는 것과 크게 다르지 않은 에르네스토의 방.<br>방 주인의 성격을 반영하듯 대충대충 정리된 것이 눈에 띈다. 개지도 않은 이불이라거나...<br><br>특별히 눈에 띄는 것은 없지만, 모든 객실에 비치해 두는 메모장이 보이지 않는다.</p>
-    <button onclick="goTo('bipum1')">도구함을 연다</button><br>
     <button class="nav-button" onclick="goTo('suite')">나가기</button>
   </div>
 
@@ -956,11 +954,17 @@
 
 //★★★★★출력된 텍스트 아웃풋 창 넘어갈 때 지우기 (goTo 연동용)★★★★★
     function clearOutputs() {
-      outputIds.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.innerText = '';
-      });
-    }
+  outputIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerText = '';
+  });
+
+  // 모든 *-result 요소도 비우기
+  document.querySelectorAll('[id$="-result"]').forEach(el => {
+    el.innerText = '';
+  });
+}
+
 
 //★★★★★goTo★★★★★
 function goTo(page) {
