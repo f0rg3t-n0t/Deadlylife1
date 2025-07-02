@@ -1049,19 +1049,6 @@ function goTo(page) {
     if (page === 'starting-point') {
     document.getElementById('persistent-nav').style.display = 'flex';
   }
-  //얘네는 버튼 없애기용인데 이렇게 하지 말고 goTodel 사용을 고려할 것 ...
-  const flowerButton = document.getElementById('flower-button-box');
-if (flowerButton) {
-  // 한 번이라도 헌화한 경우에는 다시 보이지 않음
-  flowerButton.style.display = (page === 'flowerpage') ? 'none' : 'block';
-}
-  const codebox = document.getElementById('codebox');
-if (page === 'notary4' && codebox) {
-  const alreadyUsed = codebox.getAttribute('data-used') === 'true';
-  codebox.style.display = alreadyUsed ? 'none' : 'block';
-}
-  document.getElementById('user-display').classList.remove('hidden');
-}
 
 //★★★★★goTodel(이동과 동시에 버튼 삭제)★★★★★   
 function goTodel(targetPage, buttonId) {
@@ -1206,10 +1193,6 @@ function checkSecretCode() {
   const input = document.getElementById('secret-code-input').value;
   if (input === "에르네스토 프로켈") { // 원하는 정답
     const codebox = document.getElementById('codebox');
-    if (codebox) {
-      codebox.style.display = 'none';
-      codebox.setAttribute('data-used', 'true');  // ✅ 한 번 사용했음을 표시
-    }
     goTo('evi13');
   } else {
     const result = document.getElementById('secret-code-result');
@@ -1217,114 +1200,7 @@ function checkSecretCode() {
   }
 }    
 
-
-//★★★★★음료 디스펜서★★★★★
-// 음료 효과음 공통
-let drinkAudio = new Audio("zzapdrink.mp3");
-function playDrinkSound() {
-  drinkAudio.pause();
-  drinkAudio.currentTime = 0;
-  drinkAudio.play();
-}
-// 일반 음료 선택 함수
-function selectDrink(type) {
-  const messages = {
-    coffee: { title: "커피", desc: "원두의 고소한 향을 살린 커피. 은은하게 남는 잔향이 매력적이다." },
-    "green-tea": { title: "녹차", desc: "시원하게 얼음을 띄운 녹차." },
-    "orange-juice": { title: "오렌지 주스", desc: "상큼한 오렌지 주스. 더위를 싹 날려 주는 맛이다." }
-  };
-  const msg = messages[type];
-  const resultBox = document.getElementById("drink-result");
-  resultBox.innerHTML = `<p><span style="font-weight: bold;">[${msg.title}]</span><br><br>${msg.desc}</p>`;
-  // 애니메이션 적용
-  resultBox.style.animation = "none";
-  void resultBox.offsetWidth;
-  resultBox.style.animation = "pop 0.6s ease-out";
-  playDrinkSound();
-}
-//랜덤 음료
-let randomClickCount = 0;
-const randomLimit = 3;
-function selectRandomDrink() {
-  if (randomClickCount >= randomLimit) {
-    document.getElementById("drink-result").innerText = "오늘의 사용 횟수를 초과한 모양이다.";
-    return;
-  }
-  const messages = [
-    { title: "녹샷추", desc: "아이스 녹차라떼에 에스프레소 샷을 추가했다. 커피의 풍미가 녹차 특유의 향을 극대화시키며 부드러운 우유와 어우러진다. 조금의 커스터마이징으로 대중적인 음료를 특별하게!" },
-    { title: "땡모반", desc: "태국의 음료수를 대표하는 달콤한 수박 주스. 이 수박은 누가 갈아 준 걸까?" },
-    { title: "망고 라씨", desc: "인도 전통 요거트 음료인 라씨에 달달한 망고 향을 추가. 새콤달콤한 맛이 일품!" },
-    { title: "떡볶이 국물", desc: "설탕을 넉넉히 넣어 달달한 떡볶이 국물. 고추장의 향과 더불어 희미하게 느껴지는 다시마 국물 맛까지 완벽 구현." },
-    { title: "팥죽", desc: "달콤한 팥죽. 한 잔이면 귀신이 무섭지 않다!" },
-    { title: "모히또 에이드", desc: "모히또에서 몰디브 한 잔!" },
-    { title: "페가수스 프라페", desc: "엄청난 양의 무지개 색 휘핑크림이 올라가 있다. 다 마시면 급격한 졸음이 찾아올 것 같다." },
-    { title: "쌍화차", desc: "'아무거나 괜찮아'의 '아무거나' 담당." },
-    { title: "찬물", desc: "분노로 흐려진 머리를 식히거나 남의 머리를 식혀 줄 때 유용하다." },
-    { title: "순도 100% 꿀", desc: "달다...... 손에 묻지 않도록 조심!" },
-    { title: "마늘즙", desc: "몸에 좋다. 코를 뻥 뚫어 주는 편리한 음료. 겸사겸사 뱀파이어 차단도." },
-    { title: "제로 콜라", desc: "그냥 콜라는 없다." },
-    { title: "논알콜 캔맥주", desc: "분위기에 취한다…" },
-    { title: "에너지 음료", desc: "강렬한 탄산과 강렬한 카페인. 밤샘 작업의 필수품. 과음은 금물." },
-    { title: "바나나 우유", desc: "귀여운 연노란색 병이 나왔다. 마시면 귀여워질 것 같다." },
-    { title: "이온음료", desc: "과다섭취나 약과 함께 복용하는 것은 금물." },
-    { title: "캔커피", desc: "마일드한 취향에 딱." },
-    { title: "포도맛 슬러쉬", desc: "추억의 맛이 난다." },
-    { title: "따뜻한 물", desc: "목을 보호한다." },
-    { title: "두유", desc: "락토프리. 그대로 마셔도 좋고 두유 라떼로 만드는 것도 좋다." },
-    { title: "식혜", desc: "한국의 전통 음료. 쌀알이 씹힌다." },
-    { title: "블루베리 스무디", desc: "부드럽고 상큼한 맛. 시력에 좋다고 한다." },
-    { title: "도라지차", desc: "건강에 좋아 보이는 색이다. 쓴맛을 이겨낸 자 건강을 얻으리." },
-    { title: "밀크티", desc: "쌉싸름한 얼그레이 맛." },
-    { title: "국간장", desc: "요리에 넣으면 좋다." },
-    { title: "콘포타쥬", desc: "마음을 따뜻하게 해 주는 맛. 옥수수 알갱이가 씹힌다." },
-    { title: "메론 소다", desc: "크림 위에 깜찍한 체리가 올라가 있다." },
-    { title: "버블티", desc: "밥 대신 먹을 수도 있다. 당도 70%, 얼음 적게로 커스터마이징되어 있다." },
-    { title: "사이다 치약맛 에디션", desc: "입 안까지 청결해지고 싶은 당신에게 강력 추천." },
-    { title: "야쿠르트", desc: "국민 유산균 발효 음료수. 목욕 뒤에 마시기에 딱!" },
-    { title: "대파 스무디", desc: "도발적인 건강함." },
-    { title: "후추 라떼", desc: "시원하게 재채기를 하고 싶은 당신을 위해." },
-    { title: "핫소스", desc: "삶이 지루할 때는 핫소스 한 모금으로 살벌한 짜릿함을 즐기자. 또는 삶이 지루해 보이는 사람에게 권하거나..." },
-    { title: "복숭아 맛 탄산음료", desc: "투명한 무색의 탄산음료에서 은은한 복숭아 향이 올라온다." }
-  ];
-  const randomIndex = Math.floor(Math.random() * messages.length);
-  const msg = messages[randomIndex];
-  const resultBox = document.getElementById("drink-result");
-  resultBox.innerHTML = `<p><span style="font-weight: bold;">[${msg.title}]</span><br><br>${msg.desc}</p>`;
-  // 애니메이션 재적용
-  resultBox.style.animation = "none";
-  void resultBox.offsetWidth;
-  resultBox.style.animation = "pop 0.6s ease-out";
-  playDrinkSound();
-  // 클릭 횟수 증가
-  randomClickCount++;
-  if (randomClickCount >= randomLimit) {
-    document.getElementById("random-button").disabled = true;
-    document.getElementById("random-button").innerText = "사용 불가";
-  }
-}
-
-//랜덤음료공모전
-function addgongmo() {
-  const input = document.getElementById('gongmo').value.trim();
-  // currentUser.gongmo가 없다면 초기화
-  if (!currentUser.gongmo) {
-    currentUser.gongmo = [];
-  }
-  // 2번 이상 제출 시 제한
-  if (currentUser.gongmo.length >= 2) {
-    alert("이미 공모전에 음료를 제출했습니다!");
-    return;
-  }
-  if (input === "") {
-    alert("음료 이름을 입력해 주세요.");
-    return;
-  }
-  // 제출 처리
-  currentUser.gongmo.push(input);
-  document.getElementById('gongmo-result').innerText = "공모전에 음료를 제출했습니다.";
-  document.getElementById('gongmo').value = "";
-}
-
+//파이널 리포트 걍 여기다 두려고... 
 function loadFinalReport() {
   document.body.innerHTML = '';
 
