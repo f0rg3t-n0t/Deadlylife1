@@ -1325,7 +1325,90 @@ function addgongmo() {
   document.getElementById('gongmo').value = "";
 }
 
+function loadFinalReport() {
+  document.body.innerHTML = '';
+
+  const div = document.createElement('div');
+  div.id = 'final-report';
+  div.className = 'fade-in';
+  div.style = `
+    max-width: 700px;
+    margin: 100px auto;
+    background: white;
+    border: 3px solid #202e70;
+    border-radius: 10px;
+    color: black;
+    padding: 2em;
+    font-family: 'Noto Sans KR', sans-serif;
+    position: relative;
+  `;
+
+  const lines = [
+    { html: `<em style="color: #202e70;">초세계급 ${currentUser.class} 님이 조사를 완료하였습니다…</em>`, align: 'left', lineStyle: 'color: #202e70; font-style: italic;' },
+    { html: `<em style="color: #202e70;">조사 결과 저장 중…</em>`, align: 'left', lineStyle: 'color: #202e70; font-style: italic;' },
+    { html: `<span style="color: black;">User ID : ${currentUser.id} | STR ${currentUser.STR}  INT ${currentUser.INT}  OBS ${currentUser.OBS}  POW ${currentUser.POW}  LUC ${currentUser.LUC}</span>`, align: 'left', lineStyle: 'color: black;' },
+  ];
+
+  if (currentUser.key === 1) {
+    lines.push({ html: `<div style="color: black; font-style: italic;">손끝에 미세하게 꽃향기가 남아 있다 …</div>`, align: 'right', lineStyle: 'color: black; font-style: italic;' });
+  }
+  if (currentUser.unicycle === true) {
+    lines.push({ html: `<div style="color: black; font-style: italic;">외바퀴자전거 타는 법을 마스터했다 …</div>`, align: 'right', lineStyle: 'color: black; font-style: italic;' });
+  }
+  if (currentUser.wishticket === true) {
+    lines.push({ html: `<div style="color: black; font-style: italic;">‘소원권’ 을 획득했다. 선물할 시 상대의 호감도에 +2 …</div>`, align: 'right', lineStyle: 'color: black; font-style: italic;' });
+  }
+  if (currentUser.notalove === true) {
+    lines.push({ html: `<div style="color: black; font-style: italic;">공증인의 호의를 얻은 것 같다 …</div>`, align: 'right', lineStyle: 'color: black; font-style: italic;' });
+  }
+  if (currentUser.gongmo && currentUser.gongmo.length > 0) {
+    lines.push({
+      html: `<div style="color: black; font-style: italic;">\"${currentUser.gongmo}\"로 랜덤 음료 공모전에 참여했다 …</div>`,
+      align: 'right',
+      lineStyle: 'color: black; font-style: italic;'
+    });
+  }
+  lines.push({ html: `<div style="color: #888">본 페이지를 스크린샷하여 총괄계 DM으로 제출하면 조사 완료 처리됩니다.</div>`, align: 'right', lineStyle: 'color: #888;' });
+
+  const content = document.createElement('div');
+  div.appendChild(content);
+  document.body.appendChild(div);
+
+  lines.forEach(({ html, align, lineStyle }) => {
+    const container = document.createElement('div');
+    container.style = `position: relative; margin-bottom: 1.5em; min-height: 1.5em; text-align: ${align};`;
+
+    const real = document.createElement('div');
+    real.className = 'typed-line';
+    real.style = `text-align: ${align}; ${lineStyle}`;
+    real.innerHTML = html;
+
+    container.appendChild(real);
+    content.appendChild(container);
+  });
+}
+
+const style = document.createElement('style');
+style.innerHTML = `
+  .typed-line {
+    position: relative;
+    z-index: 1;
+    white-space: pre-wrap;
+    animation: slideIn 0.6s ease-out both;
+  }
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+`;
+document.head.appendChild(style);
+
   </script>
-<script src="final-report.js"></script>
 </body>
 </html>
