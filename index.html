@@ -600,13 +600,19 @@
     <button onclick="goTo('bench')">작은 벤치</button><br>
     <button class="nav-button" onclick="goTo('outside')">나가기</button>
   </div>
-
+      <!-- 산책로 --> 
     <div id="street1" class="hidden">
-    <p><span style="font-weight: bold;">[산책로]</span><br><br>천천히 걸어서 산책하기로 했다.</p>
+    <p><span style="font-weight: bold;">[산책로]</span><br><br>천천히 걸어서 산책하기로 했다. 산책로 주변에 피어난 풀들이 싱싱하다.</p>
       <button id="st1" onclick="ev8('st1')">주변을 자세히 살펴본다</button><br>
       <button onclick="goTo('street2-2')">계속 걷는다</button>
       <button class="nav-button" onclick="goTo('street')">나가기</button>
       <p id="evi8-result"></p>
+  </div>
+
+        <!-- 산책로 --> 
+      <div id="evi8" class="hidden">
+    <p><span style="font-weight: bold;">[산책로]</span><br><br>그러나 이상하게 시들시들한 들꽃들도 있다. 누군가가 물을 너무 많이 준 것 같다.</p>
+      <button class="nav-button" onclick="goTo('street')">나가기</button>
   </div>
   
       <!-- 산책로-작은 벤치 --> 
@@ -647,39 +653,26 @@
   
   <!-- 산책로:2-2 소원의 호수 입구 --> 
   <div id="street2-2" class="hidden"> 
-  <p><span style="font-weight: bold;">[산책로]</span><br><br>어느새 산책로의 끝이다. 눈앞에 보이는 것은 작은 호수다. <span style="color: #202e70;">소원의 호수</span>라고 적힌 팻말이 꽂혀 있다.</p>
-  <button onclick="goTo('street3')">소원의 호수</button><br>
+  <p><span style="font-weight: bold;">[산책로]</span><br><br>어느새 산책로의 끝이다. 눈앞에 보이는 것은 작은 호수다.<br>이런 상황에서 소원이 무슨 의미일지는 모르겠지만...<br><br>호수 근처에 작은 <span style="color: #202e70;">메모장</span>하나가 떨어져 있다.</p>
+  <button onclick="goTo('evi9')">메모장을 확인한다</button><br>
   <button class="nav-button" onclick="goTo('street')">이만 돌아간다</button>
   </div>
 
-   <!-- 산책로: 3 소원의 호수 --> 
-  <div id="street3" class="hidden"> 
-  <p><span style="font-weight: bold;">[산책로]<br>[소원의 호수]</span><br><br>'간절히 바라는 마음은 형태를 가지게 된다는 말이 있습니다.<br>원하는 것을 소리내서 말하면, 호수에 걸린 마법이 당신의 소원을 이루어 줄지도...'</p>
-  <button id="makeawish" onclick="goTodel('pond', 'makeawish')">소원을 빈다</button><br>
+    <!-- 산책로:2-2 소원의 호수 입구 --> 
+  <div id="evi9" class="hidden"> 
+  <p><span style="font-weight: bold;">[산책로]</span><br><br>객실에 비치된 것과 동일한 종류의 메모장이다.<br>안에 적힌 내용은 섬의 토양을 분석한 내용이다. 글씨가 무척 지저분하다.</p>
+  <button id="e9" onclick="ev10('e9')">메모장의 내용에 대해 생각해 본다</button><br>
+  <button class="nav-button" onclick="goTo('street2-2')">나가기</button>
+  <p id="evi10-result"></p>
+  </div>
+
+    <!-- 산책로:2-2 소원의 호수 입구 --> 
+  <div id="evi10" class="hidden"> 
+  <p><span style="font-weight: bold;">[산책로]</span><br><br>어떻게든 읽어 보면, 마땅한 연구 시설도 없는 것치고 상당히 전문적이라는 인상이다.<br>아마 지질학 전공인 에르네스토가 작성한 게 아닐까 하는 생각이 든다.<br>시간대별로 무언가의 수치가 측정된 걸 보면 꽤 자주 산책로에 나온 것 같다.<br><br>
+누군가 이 사실을 알았다면 쉽게 노릴 수도 있었을 것이다.</p>
   <button class="nav-button" onclick="goTo('street2-2')">나가기</button>
   </div>
-
-  <!-- 소원 빌기 --> 
-  <div id="pond" class="hidden"> 
-  <p><span style="font-weight: bold;">[산책로]<br>[소원의 호수]</span><br><br>어떤 소원을 빌까?</p>
-  <button onclick="goTo('pond-money')">부자가 되고 싶다</button><br>
-  <button onclick="goTo('pond-friend')">인기인이 되고 싶다</button><br>
-  <button onclick="goTo('pond-nota')">공증인의 마음을 가지고 싶다</button><br>
-  </div>
-
-  <!-- 소원 빌기 --> 
-  <div id="pond-money" class="hidden"> 
-  <p><span style="font-weight: bold;">[산책로]<br>[소원의 호수]</span><br><br>"부자가 되고 싶다!"<br>소원을 빌었다...<br><br>어라? 아무것도 없던 하늘에서 갑자기 코인 두 개가 떨어졌다.<br>이 호수, 정말 효험이 있는 걸까...?<br><br><span style="font-weight: bold;">2코인을 획득했다.</span></p>
-  <button class="nav-button" onclick="goTo('street3')">나가기</button>
-  </div>
-
-  <div id="pond-friend" class="hidden"> 
-  <p><span style="font-weight: bold;">[산책로]<br>[소원의 호수]</span><br><br>"인기인이 되고 싶다!"<br>소원을 빌었다...<br><br>어라? 아무것도 없던 하늘에서 갑자기 종이 한 장이 떨어졌다. ...'소원권'?<br><br><span style="font-weight: bold;"> ‘소원권’ 을 획득했다. 선물할 시 상대의 호감도 +2. </span></p>
-  <button class="nav-button" onclick="goTo('street3')">나가기</button>
-  </div>
-
-
-    
+  
 <!-- !!!!여기서부터 스크립트!!!! -->
   <script>
   // 애니메이션이 끝난 뒤 hover 작동 허용
