@@ -642,7 +642,7 @@
 
         <!-- 산책로2:자전거 대여소 --> 
     <div id="evi11" class="hidden">
-    <p><span style="font-weight: bold;">[산책로]<br>[자전거 대여소]</span><br><br>자전거 중에는 앞에 짐이나 아이를 태울 수 있게끔 작은 수레가 달린 형태도 있다.<br>자세히 보면 수레 안쪽에 약간의 물이 고여 있는 데다가, 익숙한 갈색 머리카락이 한두 가닥이 붙어 있다.<br>아마도 에르네스토의 것이지만... 에르네스토 본인이 직접 작은 수레에 탈 일은 없었겠지.</p>
+    <p><span style="font-weight: bold;">[산책로]<br>[자전거 대여소]</span><br><br>자전거 중에는 앞에 짐이나 아이를 태울 수 있게끔 작은 수레가 달린 형태도 있다.<br>자세히 보면 수레 안쪽에 약간의 물이 고여 있는 데다가, 익숙한 갈색 머리카락이 한두 가닥 붙어 있다.<br>아마도 에르네스토의 것이지만... 에르네스토 본인이 직접 작은 수레에 탈 일은 없었겠지.</p>
     <button class="nav-button" onclick="goTo('street')">나가기</button>
   </div>
   
@@ -1004,7 +1004,7 @@ function goTo(page) {
     currentUser.evid6 = true;
   }
     if (['evi7'].includes(page)) {
-    currentUser.evid1 = true;
+    currentUser.evid7 = true;
   }
     if (['evi8'].includes(page)) {
     currentUser.evid8 = true;
@@ -1159,13 +1159,14 @@ function ev6(buttonId) {
 }
 
 function ev8(buttonId) {
-  if (currentUser.LUC >= 3) {
+  if (currentUser.LUC >= 3 || currentUser.id === "WEIHNACHT") {
     goTo('evi8');
   } else {
     const result = document.getElementById('evi8-result');
     result.innerText = "눈에 띄는 것은 없다.";
   }
 }
+
 function ev10(buttonId) {
   if (currentUser.INT >= 4) {
     goTo('evi10');
@@ -1208,7 +1209,7 @@ function loadFinalReport() {
 
   const lines = [
     { html: `<em style="color: #202e70;">초세계급 ${currentUser.class} 님이 조사를 완료하였습니다…</em>`, align: 'left', lineStyle: 'color: #202e70; font-style: italic;' },
-    { html: `<em style="color: #202e70;">조사 결과 저장 중…</em>`, align: 'left', lineStyle: 'color: #202e70; font-style: italic;' },
+    { html: `<em style="color: #202e70;">획득한 증거를 정리하는 중…</em>`, align: 'left', lineStyle: 'color: #202e70; font-style: italic;' },
     { html: `<span style="color: black;">User ID : ${currentUser.id} | STR ${currentUser.STR}  INT ${currentUser.INT}  OBS ${currentUser.OBS}  POW ${currentUser.POW}  LUC ${currentUser.LUC}</span>`, align: 'left', lineStyle: 'color: black;' },
   ];
 
